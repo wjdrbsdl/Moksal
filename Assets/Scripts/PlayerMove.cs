@@ -1,50 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
-    public Transform[] targets;
-    private Transform curTarget;
-    private int targetIndex = 0;
-    public float m_speed = 1f;
+    public Transform curTarget;
+    public float m_speed = 3f;
 
-    // Update is called once per frame
-    private void Start()
+    public void SetTarget(Vector3 _pos)
     {
-        curTarget = targets[targetIndex];
-        targetIndex ++;
-    }
+        Transform newTarget = new GameObject().transform;
+        newTarget.position = _pos;
+        curTarget = newTarget;
+    } 
 
     void Update()
     {
         Move();
-        TargetSelect();
     }
 
     private void Move()
     {
-        
+
+        if (curTarget == null)
+            return;
+
         //타겟 방향으로 속도만큼 이동
         Vector3 direct = curTarget.position - transform.position;
-        
+      //  direct.y = 0;
+       // Debug.Log(direct.normalized);
         transform.Translate(direct.normalized * Time.deltaTime * m_speed);
         return;
-        float axisH = Input.GetAxisRaw("Horizontal");
-        float axisV = Input.GetAxisRaw("Vertical");
-        transform.Translate(new Vector3(axisH*Time.deltaTime * m_speed, 0, axisV * Time.deltaTime * m_speed));
+
+        
     }
 
-    private void TargetSelect()
+    private void OnTriggerEnter(Collider other)
     {
-        if(Vector3.Distance(curTarget.position, transform.position) <= 0.2f)
-        {
-            if(targetIndex>= targets.Length)
-            {
-                targetIndex = 0;
-            }
-            curTarget = targets[targetIndex];
-            targetIndex++;
-        }
+        Destroy(other.gameObject);
     }
 }
