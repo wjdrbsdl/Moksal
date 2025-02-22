@@ -28,7 +28,7 @@ public class BattleField
     public int m_spawnMonsterCount = 0;
     public int m_restMonsterCount = 0;
 
-    public CharactorBase[] charactores;
+    public List<CharactorBase> charactorList;
 
     //전투가 일어나는 영역
     //배틀매니저는 각 필드를 돌아보며 전시상황을 살펴보고 
@@ -64,16 +64,21 @@ public class BattleField
        for (int i = 0; i < spawnCount; i++)
         {
             Vector3 spawnPos = Random.insideUnitSphere * spawnRadius + pos;
-            spawnPos.y = 0;
+            spawnPos.z = 0;
             CharactorBase charactor = MonoBehaviour.Instantiate(objectSample, spawnPos, Quaternion.identity).GetComponent<CharactorBase>();
-   
             spawnList.Add(charactor);
+            charactor.SetFieldNumber(fieldNumber);
         }
-        charactores = spawnList.ToArray();
+        charactorList = spawnList;
     }
 
     public void KillMonster()
     {
         m_restMonsterCount -= 1;
+    }
+
+    public List<CharactorBase> GetCharList()
+    {
+        return charactorList;
     }
 }
