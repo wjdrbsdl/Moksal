@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -410,8 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0226851ec8095364b9c6a8383d5416f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_monsterSample: {fileID: -6313818471765879720, guid: 920f19cb02c9acf45acc485a71ab4db6, type: 3}
-  m_playerSample: {fileID: -7895572574149168923, guid: 21546db01482ff4449d69fdf6fd83f4a, type: 3}
+  m_monsterSample: {fileID: 7460433701283298801, guid: 3f3275b306903934ea6f26c21e942973, type: 3}
+  m_playerSample: {fileID: 2630984713377712106, guid: 1e99bc9d8bdd265469eeeb2f632fdbc5, type: 3}
 --- !u!4 &1294928095
 Transform:
   m_ObjectHideFlags: 0
@@ -641,7 +642,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: -17
@@ -725,12 +725,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6629812147117271838, guid: 4b8f655a0612a474da4e220fefb7c461, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df0edfe03805ecf468aeb3a48a99459b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 19.2, y: 5.22}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
