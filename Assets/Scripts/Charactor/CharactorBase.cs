@@ -15,4 +15,8 @@ public class CharactorBase : MonoBehaviour
         }
     }
 
+    public void SetFieldNumber(int _num)
+    {
+        m_fieldNumber = _num;
+    }
 }
