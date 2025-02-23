@@ -20,4 +20,12 @@ public class SigleTon<T> : MonoBehaviour where T : MonoBehaviour
             return instance;
         }
     }
+
+    protected void Awake()
+    {
+        if (instance == null)
+        {
+            instance = gameObject.GetComponent<T>();
+        }
+    }
 }
