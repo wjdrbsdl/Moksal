@@ -20,6 +20,12 @@ public class CharactorData
     {
         Stats = new int[Enum.GetValues(typeof(EnumCharctorStat)).Length];
         Name = "테스트"+MakeCount.ToString();
+        for (int i = 0; i < Stats.Length; i++)
+        {
+            Random random = new();
+            int randomPower = random.Next() % 99; //임의로 스텟 값 0~99
+            Stats[i] = randomPower;
+        }
         MakeCount++;
     }
 }
