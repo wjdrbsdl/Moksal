@@ -21,7 +21,7 @@ public class MissionMaker : MonoBehaviour
     {
         Mission mission = MakeMission();
         curMission = mission;
-        Invoke(nameof(LoadBattleScene), 2f);
+       // Invoke(nameof(LoadBattleScene), 2f);
         
     }
 
