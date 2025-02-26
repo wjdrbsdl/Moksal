@@ -10,6 +10,7 @@ public class CharactorBase : MonoBehaviour
     public bool isMonster = true;
     public BattleFieldData m_battleField; //현재 케릭터가 있는 전장
     public float m_moveSpeed = 3f;
+    public float m_sight = 5f;
 
     private Transform target;
     private Vector3 goal; //타겟없을때 목적지
@@ -19,11 +20,31 @@ public class CharactorBase : MonoBehaviour
     {
         //타겟을 찾아본다.
         //못찾았다고 치자.
-
+        FindEnemy();
         //목적지로 움직인다
         Move();
         //공격한다
 
+    }
+
+    private void FindEnemy()
+    {
+        if (target != null)
+            return;
+
+        if (isMonster)
+            return;
+
+        for (int i = 0; i < m_battleField.charactorList.Count; i++)
+        {
+             if(isMonster != m_battleField.charactorList[i].isMonster)
+            {
+                target = m_battleField.charactorList[i].gameObject.transform;
+                isFowardGoal = false;
+                break;
+            }
+
+        }
     }
 
     private void Move()
@@ -33,7 +54,7 @@ public class CharactorBase : MonoBehaviour
         {
             goal = target.position;
         }
-        if(isFowardGoal == false)
+        else if(isFowardGoal == false)
         {
             //타겟 없는 상황에 정해둔 목적지도 없으면
             Vector3 curPos = transform.position;
@@ -70,7 +91,7 @@ public class CharactorBase : MonoBehaviour
         m_battleField = _fieldData;
     }
 
-   public void SetFieldNumber(int _num)
+    public void SetFieldNumber(int _num)
     {
         m_fieldNumber = _num;
     }
@@ -89,7 +110,6 @@ public class CharactorBase : MonoBehaviour
     public void MoveNextField(BattleFieldData _nextField)
     {
         m_battleField.charactorList.Remove(this);//기존 필드에서 안녕
-
         transform.position = _nextField.pos; //다음 전장 시작 위치로 순간이동 하고
         m_battleField = _nextField; //캐릭터에 필드 할당
         m_battleField.charactorList.Add(this);//필드에 캐릭터 할당 
