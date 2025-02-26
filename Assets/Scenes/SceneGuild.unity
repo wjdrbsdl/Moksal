@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 206691174}
   - component: {fileID: 206691175}
   m_Layer: 0
-  m_Name: GameLoader
+  m_Name: MissionMaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -651,6 +651,7 @@ MonoBehaviour:
   - {fileID: 1318517769}
   - {fileID: 1912513504}
   - {fileID: 250211920}
+  sceneMove: 1
 --- !u!1 &231300700
 GameObject:
   m_ObjectHideFlags: 0
