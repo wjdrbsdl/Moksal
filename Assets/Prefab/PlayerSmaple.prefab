@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3433954332977052866}
   - component: {fileID: 5265698309922945519}
   - component: {fileID: 4507561214811811386}
-  - component: {fileID: -7895572574149168923}
+  - component: {fileID: 1768527325787544986}
   m_Layer: 0
   m_Name: PlayerSmaple
   m_TagString: Untagged
@@ -149,7 +149,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-7895572574149168923
+--- !u!114 &1768527325787544986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,12 +158,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3465069508276101895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0b2f27b59bc894c81c1928a8b587a3, type: 3}
+  m_Script: {fileID: 11500000, guid: a0a3c287ccd23c24db8ce0e349172b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_fieldNumber: 0
   hp: 30
-  isMonster: 1
+  isMonster: 0
   m_battleField:
     fieldNumber: 0
     pos: {x: 0, y: 0, z: 0}
@@ -178,8 +178,7 @@ MonoBehaviour:
     m_spawnMonsterCount: 0
     m_restMonsterCount: 0
     charactorList: []
-  m_moveSpeed: 3
-  m_playerMove: {fileID: 0}
+  m_moveSpeed: 5
 --- !u!1001 &5065903843107481936
 PrefabInstance:
   m_ObjectHideFlags: 0

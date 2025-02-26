@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_monsterSample: {fileID: -6313818471765879720, guid: 920f19cb02c9acf45acc485a71ab4db6, type: 3}
-  m_playerSample: {fileID: -7895572574149168923, guid: 21546db01482ff4449d69fdf6fd83f4a, type: 3}
+  m_playerSample: {fileID: 1768527325787544986, guid: 21546db01482ff4449d69fdf6fd83f4a, type: 3}
   m_fieldObj: {fileID: 7792779534196879127, guid: b66480fe6ab2b6d439ca1211f17bb306, type: 3}
 --- !u!4 &104572925
 Transform:

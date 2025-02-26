@@ -96,4 +96,12 @@ public class CharactorBase : MonoBehaviour
         isFowardGoal = false; //목적지 갱신
         target = null;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isMonster == true)
+            return;
+
+        other.GetComponent<CharactorBase>().Attack();
+    }
 }
