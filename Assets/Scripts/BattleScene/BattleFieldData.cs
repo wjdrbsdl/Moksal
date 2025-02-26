@@ -71,10 +71,11 @@ public class BattleFieldData
         //생성 갯수, 만들 샘플, 만들 위치, 구 범위로 만들어서 y 값만 0으로 조정 
         int spawnCount = m_spawnMonsterCount;
         GameObject objectSample = AssetManager.Instance.m_monsterSample.gameObject; //생성될 몬스터는 추후 asset 관리자에서 가져올것. 
-
+        bool isMonster = true;
         if (isPlayer)
         {
             spawnCount = 1;
+            isMonster = false;
             objectSample = AssetManager.Instance.m_playerSample.gameObject;
             path = Application.dataPath + "/F";
         }
@@ -86,7 +87,7 @@ public class BattleFieldData
             spawnPos.z = 0;
             CharactorBase charactor = MonoBehaviour.Instantiate(objectSample, spawnPos, Quaternion.identity).GetComponent<CharactorBase>();
             spawnList.Add(charactor);
-
+            charactor.isMonster = isMonster;
             //캐릭터에 정보 전달
             charactor.SetFieldNumber(fieldNumber);
             charactor.SetBattleField(this); //전장 정보 넘기고 
