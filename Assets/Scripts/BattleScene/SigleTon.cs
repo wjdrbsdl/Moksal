@@ -15,17 +15,22 @@ public class SigleTon<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (instance == null)
             {
+               // Debug.Log("인스턴스가 null" + typeof(T).Name);
                 instance = FindObjectOfType<T>();
             }
+      
             return instance;
         }
     }
 
     protected void Awake()
     {
+        //Debug.Log("싱글톤 생성시작" + typeof(T).Name);
         if (instance == null)
         {
+           // Debug.Log("싱글톤 새로운거 ");
             instance = gameObject.GetComponent<T>();
         }
     }
+
 }
