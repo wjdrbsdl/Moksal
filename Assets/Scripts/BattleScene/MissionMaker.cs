@@ -21,7 +21,7 @@ public class MissionMaker : MonoBehaviour
     {
         Mission mission = MakeMission();
         curMission = mission;
-       // Invoke(nameof(LoadBattleScene), 2f);
+        Invoke(nameof(LoadBattleScene), 2f);
         
     }
 
@@ -40,13 +40,13 @@ public class MissionMaker : MonoBehaviour
         Transform[] targetPoints = m_targetPoints;
         Mission mission = new Mission();
         
-        List<BattleField> battleFieldList = new List<BattleField>();
-        BattleField playerField = new BattleField(targetPoints[0], 0, true);
+        List<BattleFieldData> battleFieldList = new List<BattleFieldData>();
+        BattleFieldData playerField = new BattleFieldData(targetPoints[0], 0, true);
         battleFieldList.Add(playerField);
         
         for (int i = 1; i < targetPoints.Length; i++)
         {
-            battleFieldList.Add(new BattleField(targetPoints[i], i));
+            battleFieldList.Add(new BattleFieldData(targetPoints[i], i));
         }
         mission.battleFields = battleFieldList.ToArray();
         return mission;

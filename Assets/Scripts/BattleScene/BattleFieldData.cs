@@ -6,9 +6,11 @@ using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using System.Collections.Generic;
 using System;
+using CharacterCreator2D;
+using System.IO;
 
 [Serializable]
-public class BattleField
+public class BattleFieldData
 {
     //전투구역
     //생성된 몬스터
@@ -35,7 +37,7 @@ public class BattleField
     //해당 필드를 기점으로 몬스터 스폰이나 전투 안내등을 진행 
     //
 
-    public BattleField(Transform _fieldPos, int _fieldNum, bool _isPlayer = false)
+    public BattleFieldData(Transform _fieldPos, int _fieldNum, bool _isPlayer = false)
     {
         fieldNumber = _fieldNum;
         pos = _fieldPos.position;
@@ -68,6 +70,11 @@ public class BattleField
             CharactorBase charactor = MonoBehaviour.Instantiate(objectSample, spawnPos, Quaternion.identity).GetComponent<CharactorBase>();
             spawnList.Add(charactor);
             charactor.SetFieldNumber(fieldNumber);
+
+            string path = Application.dataPath + "/New Character Data.json";
+            CharacterViewer viewer = objectSample.GetComponentInChildren<CharacterViewer>();
+            viewer.gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 1);
+            viewer.LoadFromJSON(path);
         }
         charactorList = spawnList;
     }

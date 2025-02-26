@@ -162,6 +162,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4541289651741808, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541289651741808, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541289651741808, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -200,6 +208,98 @@ PrefabInstance:
     - target: {fileID: 4541289651741808, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: _skincolor.b
+      value: 0.14570719
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: _skincolor.g
+      value: 0.36021072
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: _skincolor.r
+      value: 0.5661765
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: skins.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: sprites.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.ear._partName
+      value: 00
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.eyes._partName
+      value: 00
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.hair._partName
+      value: 01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.nose._partName
+      value: 00
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.armor._partName
+      value: Fantasy 00 Male
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.mouth._partName
+      value: 00
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.pants._partName
+      value: Base 00 Male
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.ear._packageName
+      value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.eyebrow._partName
+      value: 00
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.eyes._packageName
+      value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.hair._packageName
+      value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.nose._packageName
+      value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.armor._packageName
+      value: Fantasy
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.bodySkin._partName
+      value: Base 00 Male
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.mouth._packageName
+      value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.pants._packageName
+      value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.eyebrow._packageName
+      value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 114063851512035336, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}
+      propertyPath: slots.bodySkin._packageName
+      value: Base
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49e6f78840240db4f9f416d5b029f956, type: 3}

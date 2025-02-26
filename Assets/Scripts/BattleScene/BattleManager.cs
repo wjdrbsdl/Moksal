@@ -32,7 +32,7 @@ public class BattleManager : SigleTon<BattleManager>
     {
         Mission _mission = MissionMaker.curMission;
         curMission = _mission;
-        BattleField playerField;
+        BattleFieldData playerField;
         //배틀필드 생성 및 플레이어 필드 가져옴
         GenereateBattleField(_mission, out playerField);
         //플레이어 필드를 가지고 스폰된 캐릭터들 등록
@@ -43,7 +43,7 @@ public class BattleManager : SigleTon<BattleManager>
         ContinueBattle(playerField);
     }
 
-    private void GenereateBattleField(Mission _mission, out BattleField _playerField)
+    private void GenereateBattleField(Mission _mission, out BattleFieldData _playerField)
     {
         _playerField = null;
         for (int i = 0; i < _mission.battleFields.Length; i++)
@@ -58,7 +58,7 @@ public class BattleManager : SigleTon<BattleManager>
     }
 
     public List<CharPlayer> charPlayerList = new();
-    private void RegisterPlayer(BattleField _playerField)
+    private void RegisterPlayer(BattleFieldData _playerField)
     {
         List<CharactorBase> charList = _playerField.GetCharList();
         for (int i = 0; i < charList.Count; i++)
@@ -72,18 +72,18 @@ public class BattleManager : SigleTon<BattleManager>
         }
     }
 
-    private void AttachCam(BattleField _field)
+    private void AttachCam(BattleFieldData _field)
     {
         follower.target = _field.charactorList[0].gameObject;
     }
 
-    private void ContinueBattle(BattleField _curField)
+    private void ContinueBattle(BattleFieldData _curField)
     {
         //플레이 필드에 소환된 용병들에게
         //다음 배틀필드로 이동을 명령하면서 전투 시작 
         //다음 전투지는 현재 ++ 인덱스로 계산
         Debug.Log(_curField.fieldNumber + "영역에서 다음 배틀필드 이동");
-        BattleField nextFiled = FindNextBattleField(_curField);
+        BattleFieldData nextFiled = FindNextBattleField(_curField);
 
         if(nextFiled == null)
         {
@@ -102,7 +102,7 @@ public class BattleManager : SigleTon<BattleManager>
         }
     }
 
-    private BattleField FindNextBattleField(BattleField _battleField)
+    private BattleFieldData FindNextBattleField(BattleFieldData _battleField)
     {
         //생성된 배틀필드 정보를 노드로 가족 있을것이고
         //시작 필드 넘버를 가지고 갈수 있는걸 반환 지금은 그냥 단계단계
@@ -116,7 +116,7 @@ public class BattleManager : SigleTon<BattleManager>
     public void ReportBattle(int _fieldNum)
     {
         //몬스터 죽을때마다 보고 
-        BattleField reportField = curMission.GetBattleField(_fieldNum);
+        BattleFieldData reportField = curMission.GetBattleField(_fieldNum);
         reportField.KillMonster();
         Debug.Log(reportField.fieldNumber +"영역 남은 몬스터 " + reportField.restMonster);
         if (reportField.restMonster == 0)
