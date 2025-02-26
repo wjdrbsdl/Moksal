@@ -10,4 +10,16 @@ public class CharPlayer : CharactorBase
     {
         m_playerMove.SetTarget(_pos);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        CharactorBase enemy = other.GetComponent<CharactorBase>();
+        if (enemy == null)
+        {
+            return;
+        }
+
+        enemy.Attack();
+            
+    }
 }
