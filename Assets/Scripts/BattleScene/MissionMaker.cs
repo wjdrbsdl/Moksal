@@ -15,13 +15,17 @@ public class MissionMaker : MonoBehaviour
     
     public float spawnRadius = 5f;
     public Transform[] m_targetPoints;
-
+    public bool sceneMove = false;
     // Use this for initialization
     void Start()
     {
         Mission mission = MakeMission();
         curMission = mission;
-        Invoke(nameof(LoadBattleScene), 2f);
+        if(sceneMove == true)
+        {
+            Invoke(nameof(LoadBattleScene), 2f);
+        }
+        
         
     }
 
