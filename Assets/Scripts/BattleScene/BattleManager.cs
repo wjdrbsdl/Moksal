@@ -98,7 +98,7 @@ public class BattleManager : SigleTon<BattleManager>
             if (charPlayerList[i] == null)
                 continue;
 
-            charPlayerList[i].SetTarget(nextFiled.pos);
+            charPlayerList[i].MoveNextField(nextFiled);
         }
     }
 
@@ -118,8 +118,8 @@ public class BattleManager : SigleTon<BattleManager>
         //몬스터 죽을때마다 보고 
         BattleFieldData reportField = curMission.GetBattleField(_fieldNum);
         reportField.KillMonster();
-        Debug.Log(reportField.fieldNumber +"영역 남은 몬스터 " + reportField.restMonster);
-        if (reportField.restMonster == 0)
+        Debug.Log(reportField.fieldNumber +"영역 남은 몬스터 " + reportField.RestMonsterCount);
+        if (reportField.RestMonsterCount == 0)
         {
             ContinueBattle(reportField);
         }
