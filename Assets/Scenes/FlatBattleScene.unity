@@ -258,6 +258,7 @@ MonoBehaviour:
     battleFields: []
     finalGoal: 0
     players: 0
+  m_playerIconUI: {fileID: 971311453}
 --- !u!4 &232618810
 Transform:
   m_ObjectHideFlags: 0

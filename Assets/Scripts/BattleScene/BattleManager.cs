@@ -14,8 +14,8 @@ public class BattleManager : SigleTon<BattleManager>
     public Transform[] m_targetPoints;
     public CameraFollows follower;
     public Mission curMission;
-    public List<CharactorObj> charPlayerList = new();
-
+    private List<CharactorObj> m_charPlayerList = new();
+    public UIPlayerCharIcon m_playerIconUI;
     //1. 전장 구현
     //2. 게임 시작 
     //3. 소탕이 끝난 전장의 플레이어들은 근접한 전장으로 이동
@@ -36,6 +36,8 @@ public class BattleManager : SigleTon<BattleManager>
         GenereateBattleField(_mission, out playerField);
         //플레이어 필드를 가지고 스폰된 캐릭터들 등록
         RegisterPlayer(playerField);
+        //
+        MakeCharIcon();
         //3. 카메라 플레이어 스폰된 필드 중 캐릭터 하나에 타겟
         AttachCam(playerField);
         //전투 시작
@@ -63,15 +65,20 @@ public class BattleManager : SigleTon<BattleManager>
         {
             if (charList[i].isMonster == false)
             {
-                charPlayerList.Add(charList[i]);
+                m_charPlayerList.Add(charList[i]);
             }
             
         }
     }
 
+    private void MakeCharIcon()
+    {
+        m_playerIconUI.SetCharIcons(m_charPlayerList);
+    }
+
     private void AttachCam(BattleFieldData _field)
     {
-       CameraFollows.SetCamTarget( charPlayerList[0]);
+       CameraFollows.SetCamTarget( m_charPlayerList[0]);
     }
 
     private void ContinueBattle(BattleFieldData _curField)
@@ -90,12 +97,12 @@ public class BattleManager : SigleTon<BattleManager>
         }
         //현재 필드에 있는 영웅들을 
         //다음 지역으로 이동 시키기 
-        for (int i = 0; i < charPlayerList.Count; i++)
+        for (int i = 0; i < m_charPlayerList.Count; i++)
         {
-            if (charPlayerList[i] == null)
+            if (m_charPlayerList[i] == null)
                 continue;
 
-            charPlayerList[i].MoveNextField(nextFiled);
+            m_charPlayerList[i].MoveNextField(nextFiled);
         }
     }
 
