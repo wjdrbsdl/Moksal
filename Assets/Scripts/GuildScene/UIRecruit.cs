@@ -12,9 +12,11 @@ public class UIRecruit : UIBase
     public int tempRecruitCount = 3;
     public void OnClickRecruit()
     {
-        //영입하기 버튼을 누르면
-        //창을 연다
-        Window.SetActive(true);
+        Window.SetActive(!Window.activeSelf);
+
+        if (Window.activeSelf == false)
+            return;
+
         //필요한 만큼 슬롯을 만드는 부분
         MakeSamplePool(ref charSlots, SlotSample.gameObject, tempRecruitCount, grid);
 

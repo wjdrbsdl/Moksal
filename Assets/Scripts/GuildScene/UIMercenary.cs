@@ -13,10 +13,14 @@ public class UIMercenary : UIBase
 
     public void OnClickShowHaveChares()
     {
+        Window.SetActive(!Window.activeSelf);
+
+        if (Window.activeSelf == false)
+            return;
+
         List<CharactorData> _haveMercenaryList = MGGuild.GuildData.GetCharList();
         //보유한 용병 데이터를 가지고 용병 정보창 생성 
         //창을 연다
-        Window.SetActive(true);
         tempRecruitCount = _haveMercenaryList.Count;
         //필요한 만큼 슬롯을 만드는 부분
         MakeSamplePool(ref charSlots, SlotSample.gameObject, tempRecruitCount, grid);
