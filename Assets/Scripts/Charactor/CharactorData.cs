@@ -32,6 +32,7 @@ public class CharactorData
         Stats[(int)EnumCharctorStat.AttackReach] = 1;
         Stats[(int)EnumCharctorStat.AttackCoolTime] = 2;
         MakeCount++;
+        isPlayer = _isPlayer;
     }
 
     public int GetCharStat(EnumCharctorStat _charStat)
