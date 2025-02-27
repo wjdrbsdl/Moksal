@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 public enum EnumCharctorStat
 {
-    MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, AttackCurCoolTime,
-    Sight
+    MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, Sight
 }
 
 public class CharactorData
@@ -19,7 +18,7 @@ public class CharactorData
     public int[] Stats;
     public CharactorObj charObj;
 
-    public CharactorData()
+    public CharactorData(bool _isPlayer)
     {
         Stats = new int[Enum.GetValues(typeof(EnumCharctorStat)).Length];
         Name = "테스트"+MakeCount.ToString();
@@ -29,6 +28,9 @@ public class CharactorData
             int randomPower = random.Next() % 99; //임의로 스텟 값 0~99
             Stats[i] = randomPower;
         }
+        Stats[(int)EnumCharctorStat.MoveSpeed] = 3;
+        Stats[(int)EnumCharctorStat.AttackReach] = 1;
+        Stats[(int)EnumCharctorStat.AttackCoolTime] = 2;
         MakeCount++;
     }
 
