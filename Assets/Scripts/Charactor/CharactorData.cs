@@ -48,7 +48,7 @@ public class CharactorData
 
     public void Accelerate(int _value)
     {
-        Stats[(int)EnumCharctorStat.ActionSpeed] -= _value;
+        Stats[(int)EnumCharctorStat.ActionSpeed] = _value;
         if (Stats[(int)EnumCharctorStat.ActionSpeed] <= 2)
         {
             Stats[(int)EnumCharctorStat.ActionSpeed] = 2;
