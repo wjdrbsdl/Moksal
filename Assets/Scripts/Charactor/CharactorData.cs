@@ -15,8 +15,9 @@ public class CharactorData
 {
     static private int MakeCount = 1;
     public string Name;
+    public bool isPlayer = true;
     public int[] Stats;
-    public CharactorBase charObj;
+    public CharactorObj charObj;
 
     public CharactorData()
     {
@@ -43,5 +44,10 @@ public class CharactorData
         {
             charObj.Dead();
         }
+    }
+
+    public void SetCharObj(CharactorObj _obj)
+    {
+        charObj = _obj;
     }
 }
