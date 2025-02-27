@@ -17,10 +17,12 @@ public class MissionMaker : MonoBehaviour
     public bool sceneMove = false;
     public static Mission curMission;
     public int tempPlayerCount = 2;
+    public int tempEnemyCount = 5;
+    public int tempStep = 5;
     // Use this for initialization
     void Start()
     {
-        Mission mission = MakeMission(5);
+        Mission mission = MakeMission(tempStep);
         curMission = mission;
         AddPlayerChar(); //플레이어가 아군 용병을 넣는 부분
         
@@ -88,7 +90,7 @@ public class MissionMaker : MonoBehaviour
             float widht = Random.Range(5, maxRange);
             float height = Random.Range(5, maxRange);
 
-            CharactorData[] spawnEnemys = new CharactorData[3];
+            CharactorData[] spawnEnemys = new CharactorData[tempEnemyCount];
             for (int e = 0; e < spawnEnemys.Length; e++)
             {
                 bool isPlayer = false;
