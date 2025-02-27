@@ -27,7 +27,7 @@ public class BattleFieldData
     public float fieldUp;
     public float fieldDown;
 
-    public float spawnRadius ;
+    public float spawnRadius=3 ;
 
     public bool ablePlayerSpawn = false;
     public int m_restMonsterCount;
@@ -97,7 +97,7 @@ public class BattleFieldData
             bool isPlayer = charData.isPlayer;
             string path = Application.dataPath + "/New Character Data2.json";
             if(charData.isPlayer)
-                path = Application.dataPath + "/F";
+                path = Application.dataPath + "/New Character Data";
 
             //스폰할 위치 계산
             Vector3 spawnPos = Random.insideUnitSphere * spawnRadius + pos;
