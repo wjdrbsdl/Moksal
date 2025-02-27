@@ -34,6 +34,19 @@ public class MissionMaker : MonoBehaviour
         
     }
 
+    public void OnClickNewMissionByHireChar()
+    {
+        if (MGGuild.GuildData.m_haveCharList.Count <= 0)
+        {
+            Debug.Log("보유케릭없음");
+            return;
+        }
+
+        curMission = MakeMission(tempStep);
+        AddPlayerChar(MGGuild.GuildData.m_haveCharList);
+        Invoke(nameof(LoadBattleScene), 2f);
+    }
+
     private void LoadBattleScene()
     {
         SceneManager.LoadScene(1);
@@ -130,6 +143,13 @@ public class MissionMaker : MonoBehaviour
         curMission.inputPlayers = spawnPlayers;
         curMission.GetBattleField(0).AddSpawnData(spawnPlayers);
 
+    }
+
+    private void AddPlayerChar(List<CharactorData> _charDataList)
+    {
+        CharactorData[] spawnPlayers = _charDataList.ToArray();
+        curMission.inputPlayers = spawnPlayers;
+        curMission.GetBattleField(0).AddSpawnData(spawnPlayers);
     }
 }
 
