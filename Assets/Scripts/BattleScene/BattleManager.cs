@@ -39,7 +39,7 @@ public class BattleManager : SigleTon<BattleManager>
         //3. 카메라 플레이어 스폰된 필드 중 캐릭터 하나에 타겟
         AttachCam(playerField);
         //전투 시작
-        ContinueBattle(playerField);
+        //ContinueBattle(playerField);
     }
 
     private void GenereateBattleField(Mission _mission, out BattleFieldData _playerField)
