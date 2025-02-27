@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Net.NetworkInformation;
+using UnityEditor.Animations;
 using UnityEngine;
 
 
@@ -10,15 +11,27 @@ public class CharactorObj : MonoBehaviour
     public BattleFieldData m_battleField; //현재 케릭터가 있는 전장
     public CharactorData m_charData;
 
+    private Animator m_animator;
+    private float m_attackSpeed; //공격 속도 - 공격 프레임이 끝나는 주기? -> 하는 행동에 따라 값을 받아올것. 
+    private float m_curWaitTime = 0; //동작 대기 시간 
     private float m_attackCool;
     private float m_curCool;
     private CharactorObj target;
     private Vector3 goal; //타겟없을때 목적지
     private bool isFowardGoal; //골로 향하는 중인가
+    private EnumAniState m_aniState;
+    enum EnumAniState
+    {
+        Idle, Move, Attack
+    }
 
     private void Update()
     {
         m_curCool += Time.deltaTime; //현재쿨 갱신
+        if(AbleActionState() == false)
+        {
+            return;
+        }
         //타겟을 찾아본다.
         //못찾았다고 치자.
         FindEnemy();
@@ -26,7 +39,21 @@ public class CharactorObj : MonoBehaviour
         Move();
         //공격한다
         DoAction();
+        //애니메이션
+    
 
+    }
+
+    private bool AbleActionState()
+    {
+        //행동할 수 있는 상태인가
+        if (m_curWaitTime <= 0)
+        {
+            return true;
+        }
+
+        m_curWaitTime -= Time.deltaTime;
+        return false;
     }
 
     private void FindEnemy()
@@ -79,6 +106,9 @@ public class CharactorObj : MonoBehaviour
         {
             return;
         }
+
+        m_aniState = EnumAniState.Move;
+        PlayAnim();
         transform.position += (goal - transform.position).normalized * Time.deltaTime * m_charData.GetCharStat(EnumCharctorStat.MoveSpeed);
         
     
@@ -102,14 +132,18 @@ public class CharactorObj : MonoBehaviour
                 if(m_curCool >= m_attackCool)
                 {
                     //공격하고
+                    m_aniState = EnumAniState.Attack;
+                    PlayAnim();
                     target.Attack();
                     m_curCool = 0;
+                    m_curWaitTime = m_attackSpeed;
 
-                    //사망체크 나중엔 딴 함수로
-                    if(target.gameObject == null)
-                    {
-                        target = null; //타겟 초기화 
-                    }
+                    ////사망체크 나중엔 딴 함수로
+                    //if (target.gameObject == null)
+                    //{
+                    //    target = null; //타겟 초기화 
+                    //}
+
                 }
                 
                 return;
@@ -117,7 +151,33 @@ public class CharactorObj : MonoBehaviour
 
             //그냥 목적지 까지 걸어간거면 목적지 초기화
             isFowardGoal = false;
+            m_aniState = EnumAniState.Idle;
         }
+    }
+
+    private void PlayAnim()
+    {
+        int look = 1;
+        if((goal.x - transform.position.x) < 0)
+        {
+            //목적지가 오른쪽에있으면
+            look = -1;
+        }
+        transform.localScale = new Vector3(look, 1, 1);
+
+        switch (m_aniState)
+        {
+            case EnumAniState.Move:
+                m_animator.SetBool("Move", true);
+                break;
+
+            case EnumAniState.Attack:
+                m_animator.SetBool("Move", false);
+                m_animator.SetTrigger("AttackTrigger");
+                break;
+        }
+
+        
     }
 
     private void RestrictPos(ref Vector3 _goal)
@@ -138,8 +198,12 @@ public class CharactorObj : MonoBehaviour
         m_charData = _charData;
         _charData.charObj = this;
 
+        m_aniState = EnumAniState.Idle;
+        m_animator = GetComponentInChildren<Animator>();
+
         m_attackCool = _charData.GetCharStat(EnumCharctorStat.AttackCoolTime);
         m_curCool = 0;
+        m_attackSpeed = _charData.GetCharStat(EnumCharctorStat.ActionSpeed);
     }
 
     public void Attack()
