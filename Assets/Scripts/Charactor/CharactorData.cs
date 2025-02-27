@@ -10,6 +10,7 @@ public enum EnumCharctorStat
     MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, Sight, ActionSpeed
 }
 
+[Serializable]
 public class CharactorData
 {
     static private int MakeCount = 1;
@@ -30,7 +31,7 @@ public class CharactorData
         }
         Stats[(int)EnumCharctorStat.MoveSpeed] = 3;
         Stats[(int)EnumCharctorStat.AttackReach] = 1;
-        Stats[(int)EnumCharctorStat.AttackCoolTime] = 2;
+        Stats[(int)EnumCharctorStat.AttackCoolTime] = 200;
         Stats[(int)EnumCharctorStat.ActionSpeed] = 100;
         MakeCount++;
         isPlayer = _isPlayer;
@@ -46,12 +47,21 @@ public class CharactorData
         Stats[(int)_charStat] += _value;
     }
 
-    public void Accelerate(int _value)
+    public void AccelerateActionSpeed(int _value)
     {
-        Stats[(int)EnumCharctorStat.ActionSpeed] = _value;
+        Stats[(int)EnumCharctorStat.ActionSpeed] += _value;
         if (Stats[(int)EnumCharctorStat.ActionSpeed] <= 2)
         {
             Stats[(int)EnumCharctorStat.ActionSpeed] = 2;
+        }
+    }
+
+    public void AccelerateCoolTime(int _value)
+    {
+        Stats[(int)EnumCharctorStat.AttackCoolTime] += _value;
+        if (Stats[(int)EnumCharctorStat.AttackCoolTime] <= 2)
+        {
+            Stats[(int)EnumCharctorStat.AttackCoolTime] = 2;
         }
     }
 
