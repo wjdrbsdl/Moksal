@@ -25,7 +25,7 @@ public class CharactorData
         for (int i = 0; i < Stats.Length; i++)
         {
             Random random = new();
-            int randomPower = random.Next() % 99; //임의로 스텟 값 0~99
+            int randomPower = random.Next() % 99+1; //임의로 스텟 값 0~99
             Stats[i] = randomPower;
         }
         Stats[(int)EnumCharctorStat.MoveSpeed] = 3;
