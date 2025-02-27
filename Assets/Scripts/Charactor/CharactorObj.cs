@@ -160,6 +160,11 @@ public class CharactorObj : MonoBehaviour
                         Debug.Log("상대 사망");
                         m_charData.CalStat(EnumCharctorStat.MoveSpeed, 1);
                         m_charData.CalStat(EnumCharctorStat.AttackPower, 3);
+                        m_charData.AccelerateActionSpeed(-2);
+                        m_attackSpeed = Utility.CalHundred(m_charData.GetCharStat(EnumCharctorStat.ActionSpeed));
+                        m_charData.AccelerateCoolTime(-2);
+                        m_attackCool = Utility.CalHundred(m_charData.GetCharStat(EnumCharctorStat.AttackCoolTime));
+                     
                     }
 
                 }
@@ -219,10 +224,12 @@ public class CharactorObj : MonoBehaviour
         m_aniState = EnumAniState.Idle;
         m_animator = GetComponentInChildren<Animator>();
 
-        m_attackCool = _charData.GetCharStat(EnumCharctorStat.AttackCoolTime);
+        m_attackCool = Utility.CalHundred(_charData.GetCharStat(EnumCharctorStat.AttackCoolTime));
         m_curCool = 0;
-        m_attackSpeed = _charData.GetCharStat(EnumCharctorStat.ActionSpeed);
+        m_attackSpeed = Utility.CalHundred( _charData.GetCharStat(EnumCharctorStat.ActionSpeed));
     }
+
+ 
 
     public void Attack()
     {
