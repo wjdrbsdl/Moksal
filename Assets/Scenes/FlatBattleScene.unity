@@ -204,7 +204,9 @@ MonoBehaviour:
   - {fileID: 1150715394}
   - {fileID: 656222123}
   sceneMove: 0
-  tempPlayerCount: 2
+  tempPlayerCount: 6
+  tempEnemyCount: 15
+  tempStep: 10
 --- !u!4 &176606874
 Transform:
   m_ObjectHideFlags: 0
