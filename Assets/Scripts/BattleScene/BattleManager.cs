@@ -14,14 +14,13 @@ public class BattleManager : SigleTon<BattleManager>
     public Transform[] m_targetPoints;
     public CameraFollows follower;
     public Mission curMission;
+    public List<CharactorObj> charPlayerList = new();
 
-    //1. 맵을 만들어야하고 타겟지점 지정
-    // - 고정된 맵 , 고정된 시작 위치, 구성 단계와, 임무목표(몬스터 토벌)
-    //2. 타겟지점에 몬스터를 소환 
-    //3. 시작지점에 플레이어 소환 
-    //4. 게임 시작 
-    //5. 플레이어들을 - 가까운 타겟지점으로 이동 
-    //6. 해당 타겟지점에서 클리어 콜백을 받으면 - 다음 타겟지점 판단 - 이런저런 진행 콜백을 받을때마다 승리 패배 판단 
+    //1. 전장 구현
+    //2. 게임 시작 
+    //3. 소탕이 끝난 전장의 플레이어들은 근접한 전장으로 이동
+    //4. 해당 타겟지점에서 클리어 콜백을 받으면 - 다음 타겟지점 판단 - 이런저런 진행 콜백을 받을때마다 승리 패배 판단 
+    //투입된 용병은 실시간으로 보여주기 
 
     private void Start()
     {
@@ -56,8 +55,7 @@ public class BattleManager : SigleTon<BattleManager>
             _mission.battleFields[i].GenerateField();
         }
     }
-
-    public List<CharactorObj> charPlayerList = new();
+    
     private void RegisterPlayer(BattleFieldData _playerField)
     {
         List<CharactorObj> charList = _playerField.GetCharList();
