@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public enum EnumCharctorStat
 {
-    MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, Sight
+    MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, Sight, ActionSpeed
 }
 
 public class CharactorData
@@ -31,6 +31,7 @@ public class CharactorData
         Stats[(int)EnumCharctorStat.MoveSpeed] = 3;
         Stats[(int)EnumCharctorStat.AttackReach] = 1;
         Stats[(int)EnumCharctorStat.AttackCoolTime] = 2;
+        Stats[(int)EnumCharctorStat.ActionSpeed] = 1;
         MakeCount++;
         isPlayer = _isPlayer;
     }
