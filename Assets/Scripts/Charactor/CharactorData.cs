@@ -41,6 +41,11 @@ public class CharactorData
         return Stats[(int)_charStat];
     }
 
+    public void CalStat(EnumCharctorStat _charStat, int _value)
+    {
+        Stats[(int)_charStat] += _value;
+    }
+
     public void Attack(int _damage)
     {
         Stats[(int)EnumCharctorStat.CurHp] -= _damage;

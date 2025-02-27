@@ -138,11 +138,12 @@ public class CharactorObj : MonoBehaviour
                     m_curCool = 0;
                     m_curWaitTime = m_attackSpeed;
 
-                    ////사망체크 나중엔 딴 함수로
-                    //if (target.gameObject == null)
-                    //{
-                    //    target = null; //타겟 초기화 
-                    //}
+                    if(target.IsDead())
+                    {
+                        Debug.Log("상대 사망");
+                        m_charData.CalStat(EnumCharctorStat.MoveSpeed, 1);
+                        m_charData.CalStat(EnumCharctorStat.AttackPower, 3);
+                    }
 
                 }
                 
@@ -216,6 +217,11 @@ public class CharactorObj : MonoBehaviour
     {
         BattleManager.Instance.ReportBattle(m_battleField.fieldNumber);
         Destroy(gameObject);
+    }
+
+    public bool IsDead()
+    {
+        return m_charData.GetCharStat(EnumCharctorStat.CurHp) <= 0;
     }
 
     public void MoveNextField(BattleFieldData _nextField)
