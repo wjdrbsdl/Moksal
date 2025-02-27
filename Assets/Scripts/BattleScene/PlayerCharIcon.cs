@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PlayerCharIcon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private CharactorObj m_charObj;
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickIcon()
     {
-        
+        CameraFollows.SetCamTarget(m_charObj);
     }
 }

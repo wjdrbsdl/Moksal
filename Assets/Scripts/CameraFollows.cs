@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class CameraFollows : MonoBehaviour
 {
-    public GameObject target;
+    public static GameObject target;
     private Vector3 offset;
+
+    public static void SetCamTarget(CharactorObj _obj)
+    {
+        target = _obj.gameObject;
+    }
 
     private void Start()
     {

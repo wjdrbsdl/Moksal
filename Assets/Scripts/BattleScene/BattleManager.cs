@@ -71,7 +71,7 @@ public class BattleManager : SigleTon<BattleManager>
 
     private void AttachCam(BattleFieldData _field)
     {
-        follower.target = charPlayerList[0].gameObject;
+       CameraFollows.SetCamTarget( charPlayerList[0]);
     }
 
     private void ContinueBattle(BattleFieldData _curField)

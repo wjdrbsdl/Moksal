@@ -12,6 +12,6 @@ public class UIPlayerCharIcon : UIBase
 
     public void SetCharIcons()
     {
-
+        
     }
 }
