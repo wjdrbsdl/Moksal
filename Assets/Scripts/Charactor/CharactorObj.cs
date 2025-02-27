@@ -64,6 +64,7 @@ public class CharactorObj : MonoBehaviour
         if (isMonster)
             return;
 
+        float minDistance = float.MaxValue;
         for (int i = 0; i < m_battleField.charactorList.Count; i++)
         {
             if (m_battleField.charactorList[i] == null)
@@ -71,9 +72,18 @@ public class CharactorObj : MonoBehaviour
 
             if (isMonster != m_battleField.charactorList[i].isMonster)
             {
-                target = m_battleField.charactorList[i];
+                float distance = Vector3.Distance(m_battleField.charactorList[i].transform.position, transform.position);
+                if(distance <= minDistance)
+                {
+                    minDistance = distance;
+                    target = m_battleField.charactorList[i];
+             
+                }
+                
+            }
+            if(target != null)
+            {
                 isFowardGoal = false;
-                break;
             }
 
         }
@@ -131,7 +141,14 @@ public class CharactorObj : MonoBehaviour
                 //타겟 쫓아왔으면 공격
                 if(m_curCool >= m_attackCool)
                 {
-                    //공격하고
+                    if (target.IsDead())
+                    {
+                        //이미 사망한 상태라면 공격 안함
+                        target = null;
+                        return;
+                    }
+
+                        //공격하고
                     m_aniState = EnumAniState.Attack;
                     PlayAnim();
                     target.Attack();
@@ -216,6 +233,11 @@ public class CharactorObj : MonoBehaviour
     public void Dead()
     {
         BattleManager.Instance.ReportBattle(m_battleField.fieldNumber);
+        Invoke(nameof(ObjDestroy), 0.1f);
+    }
+
+    private void ObjDestroy()
+    {
         Destroy(gameObject);
     }
 
@@ -227,7 +249,11 @@ public class CharactorObj : MonoBehaviour
     public void MoveNextField(BattleFieldData _nextField)
     {
         m_battleField.charactorList.Remove(this);//기존 필드에서 안녕
-        transform.position = _nextField.pos; //다음 전장 시작 위치로 순간이동 하고
+        //다음 필드 중심에서 랜덤
+        Vector3 movePos = Random.insideUnitSphere * 3 + _nextField.pos;
+        movePos.z = 0;
+        //위치에 이동
+        transform.position = movePos; //다음 전장 시작 위치로 순간이동 하고
         m_battleField = _nextField; //캐릭터에 필드 할당
         m_battleField.charactorList.Add(this);//필드에 캐릭터 할당 
         isFowardGoal = false; //목적지 갱신
