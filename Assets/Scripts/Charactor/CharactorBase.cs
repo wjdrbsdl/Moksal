@@ -6,11 +6,9 @@ using UnityEngine;
 public class CharactorBase : MonoBehaviour
 {
     public int m_fieldNumber;
-    public int hp = 30;
     public bool isMonster = true;
     public BattleFieldData m_battleField; //현재 케릭터가 있는 전장
-    public float m_moveSpeed = 3f;
-    public float m_sight = 5f;
+    public CharactorData m_charData;
 
     private Transform target;
     private Vector3 goal; //타겟없을때 목적지
@@ -67,7 +65,7 @@ public class CharactorBase : MonoBehaviour
         }
 
         //목적지를 향해 이동 
-        transform.position += (goal - transform.position).normalized * Time.deltaTime * m_moveSpeed;
+        transform.position += (goal - transform.position).normalized * Time.deltaTime * m_charData.GetCharStat(EnumCharctorStat.MoveSpeed);
         
         if(Vector3.Distance(transform.position, goal) <= 0.3f)
         {
@@ -98,13 +96,12 @@ public class CharactorBase : MonoBehaviour
 
     public void Attack()
     {
-        hp -= 10;
-        if(hp <= 0)
-        {
-            BattleManager.Instance.ReportBattle(m_fieldNumber);
-            Destroy(gameObject);
-        }
-      
+        m_charData.Attack(10);
+    }
+    public void Dead()
+    {
+        BattleManager.Instance.ReportBattle(m_fieldNumber);
+        Destroy(gameObject);
     }
 
     public void MoveNextField(BattleFieldData _nextField)

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 public enum EnumCharctorStat
 {
-    MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, AttackCurCoolTime
+    MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, AttackCurCoolTime,
+    Sight
 }
 
 public class CharactorData
@@ -15,7 +16,8 @@ public class CharactorData
     static private int MakeCount = 1;
     public string Name;
     public int[] Stats;
-    
+    public CharactorBase charObj;
+
     public CharactorData()
     {
         Stats = new int[Enum.GetValues(typeof(EnumCharctorStat)).Length];
@@ -27,5 +29,19 @@ public class CharactorData
             Stats[i] = randomPower;
         }
         MakeCount++;
+    }
+
+    public int GetCharStat(EnumCharctorStat _charStat)
+    {
+        return Stats[(int)_charStat];
+    }
+
+    public void Attack(int _damage)
+    {
+        Stats[(int)EnumCharctorStat.CurHp] -= _damage;
+        if(Stats[(int)EnumCharctorStat.CurHp] <= 0)
+        {
+            charObj.Dead();
+        }
     }
 }
