@@ -57,10 +57,10 @@ public class BattleManager : SigleTon<BattleManager>
         }
     }
 
-    public List<CharactorBase> charPlayerList = new();
+    public List<CharactorObj> charPlayerList = new();
     private void RegisterPlayer(BattleFieldData _playerField)
     {
-        List<CharactorBase> charList = _playerField.GetCharList();
+        List<CharactorObj> charList = _playerField.GetCharList();
         for (int i = 0; i < charList.Count; i++)
         {
             if (charList[i].isMonster == false)
