@@ -47,7 +47,7 @@ public class BattleFieldData
         width = 5f;
         height = 3f;
         pos = _fieldPos.position;
-        CalRestrict(pos);
+        CalRestrict();
 
         //플레이어 스폰지역인가 -> 필요없음. 넣는 캐릭터 정보로 판단
         ablePlayerSpawn = _ablePlayerSpawn;
@@ -60,14 +60,14 @@ public class BattleFieldData
         }
     }
 
-    public BattleFieldData(float _width, float _height , int _fieldNum, CharactorData[] _spawnObjects, bool _ablePlayerSpawn = false)
+    public BattleFieldData(Vector3 _pos, float _width, float _height , int _fieldNum, CharactorData[] _spawnObjects, bool _ablePlayerSpawn = false)
     {
         fieldNumber = _fieldNum;
         //공간 설정
         width = _width;
         height = _height;
-     
-
+        pos = _pos;
+        CalRestrict();
         //플레이어 스폰지역인가 -> 필요없음. 넣는 캐릭터 정보로 판단
         ablePlayerSpawn = _ablePlayerSpawn;
 
@@ -166,9 +166,9 @@ public class BattleFieldData
         m_spawnCharData = renewSpawnData;
     }
 
-    public void CalRestrict(Vector3 _pos)
+    public void CalRestrict()
     {
-        pos = _pos;
+    
         float fieldHalfWidth = width / 2;
         float fieldHalfHeight = height / 2;
         fieldLeft = pos.x - fieldHalfWidth;
