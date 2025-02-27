@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,7 +20,7 @@ public class MissionMaker : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Mission mission = MakeMission();
+        Mission mission = MakeMission(5);
         curMission = mission;
         AddPlayerChar(); //플레이어가 아군 용병을 넣는 부분
         
@@ -70,6 +69,49 @@ public class MissionMaker : MonoBehaviour
             battleFieldList.Add(new BattleFieldData(targetPoints[i], i, spawnEnemys, false));
         }
         mission.battleFields = battleFieldList.ToArray();
+        return mission;
+    }
+
+    private Mission MakeMission(int _fieldCount)
+    {
+        Mission mission = new Mission(); //임의로 미션을 생성함 - 추후 db로 가져올 것. 
+        //필드 정보 담을 리스트
+        List<BattleFieldData> battleFieldList = new List<BattleFieldData>();
+
+        Vector3 spawnPos = new Vector3(0, 0, 0);
+        float maxRange = 15;
+        float padding = 2.5f;
+        bool right = true;
+        //몬스터 소환될 전장 생성
+        for (int i = 0; i < _fieldCount; i++)
+        {
+            float widht = Random.Range(5, maxRange);
+            float height = Random.Range(5, maxRange);
+
+            CharactorData[] spawnEnemys = new CharactorData[3];
+            for (int e = 0; e < spawnEnemys.Length; e++)
+            {
+                bool isPlayer = false;
+                CharactorData enemyData = new CharactorData(isPlayer);
+                spawnEnemys[e] = enemyData;
+            }
+            if (right)
+            {
+                spawnPos.x = (maxRange / 2) + padding;
+            }
+            else
+            {
+                spawnPos.x = -(maxRange / 2 + padding);
+            }
+
+            spawnPos.y = i * (maxRange/2 + padding);
+            //다음 스폰지역 계산하기
+
+            battleFieldList.Add(new BattleFieldData(spawnPos, widht, height, i, spawnEnemys, false));
+            right = !right;
+        }
+        mission.battleFields = battleFieldList.ToArray();
+        mission.battleFields[0].ablePlayerSpawn = true; //스폰지역으로 설정
         return mission;
     }
 
