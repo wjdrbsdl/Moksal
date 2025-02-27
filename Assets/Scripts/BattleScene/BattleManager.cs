@@ -48,7 +48,7 @@ public class BattleManager : SigleTon<BattleManager>
         _playerField = null;
         for (int i = 0; i < _mission.battleFields.Length; i++)
         {
-            if (_mission.battleFields[i].isPlayer)
+            if (_mission.battleFields[i].ablePlayerSpawn)
             {
                 _playerField = _mission.battleFields[i];
             }
