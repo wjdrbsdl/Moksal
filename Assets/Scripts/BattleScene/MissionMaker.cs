@@ -62,7 +62,8 @@ public class MissionMaker : MonoBehaviour
             CharactorData[] spawnEnemys = new CharactorData[3];
             for(int e = 0; e < spawnEnemys.Length; e++)
             {
-                CharactorData enemyData = new CharactorData();
+                bool isPlayer = false;
+                CharactorData enemyData = new CharactorData(isPlayer);
                 spawnEnemys[e] = enemyData;
             }
             
@@ -78,7 +79,8 @@ public class MissionMaker : MonoBehaviour
         CharactorData[] spawnPlayers = new CharactorData[1];
         for (int e = 0; e < spawnPlayers.Length; e++)
         {
-            CharactorData playerData = new CharactorData();
+            bool isPlayer = true;
+            CharactorData playerData = new CharactorData(isPlayer);
             spawnPlayers[e] = playerData;
         }
         curMission.inputPlayers = spawnPlayers;

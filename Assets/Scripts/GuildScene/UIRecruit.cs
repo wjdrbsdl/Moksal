@@ -26,7 +26,7 @@ public class UIRecruit : UIBase
         for (int i = 0; i < tempRecruitCount; i++)
         {
             //지원한 캐릭터 데이터 생성 - 임의로 3개, 임의로 옵션 동일
-            CharactorData charData = new CharactorData();
+            CharactorData charData = new CharactorData(true);
             charSlots[i].SetInfo(charData);
             charSlots[i].gameObject.SetActive(true);
         }
