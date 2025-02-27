@@ -3,7 +3,7 @@ using System.Net.NetworkInformation;
 using UnityEngine;
 
 
-public class CharactorBase : MonoBehaviour
+public class CharactorObj : MonoBehaviour
 {
     public int m_fieldNumber;
     public bool isMonster = true;
@@ -94,6 +94,12 @@ public class CharactorBase : MonoBehaviour
         m_fieldNumber = _num;
     }
 
+    public void SetCharactorData(CharactorData _charData)
+    {
+        m_charData = _charData;
+        _charData.charObj = this;
+    }
+
     public void Attack()
     {
         m_charData.Attack(10);
@@ -119,6 +125,6 @@ public class CharactorBase : MonoBehaviour
         if (isMonster == true)
             return;
 
-        other.GetComponent<CharactorBase>().Attack();
+        other.GetComponent<CharactorObj>().Attack();
     }
 }
