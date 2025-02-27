@@ -10,9 +10,14 @@ public class UIRecruit : UIBase, ICharSlotClickCallBack
 
     public CharSlot[] charSlots; //정보 표기할 슬롯들
     public int tempRecruitCount = 3;
+    private int m_viewCount;
 
     public void OnClickCharSlot(CharSlot _charSlot)
     {
+        //여길 들어왔다는건 유효한 슬롯을 영입 했다는 것. 
+
+        //선택한 슬롯의 아이템을 뒤에서부터 당기는 일을 해야함
+        //1. 인덱스 찾고
         int index = -1;
         for(int i = 0; i< charSlots.Length; i++)
         {
@@ -22,15 +27,18 @@ public class UIRecruit : UIBase, ICharSlotClickCallBack
                 break;
             }
         }
+        //2. 해당 인덱스 부터 뒤에껄로 부터 당겨옴
         for(int i = index; i < charSlots.Length; i++)
         {
-            charSlots[i] = null;
             if(i+1 < charSlots.Length)
             {
-                charSlots[i] = charSlots[i + 1];
+                charSlots[i].SetInfo(charSlots[i+1].GetCharData());
             }
         }
-        RenewCharSlot();
+        //3. 맨 마지막 슬롯은 끔
+        charSlots[m_viewCount - 1].gameObject.SetActive(false);
+        //4. 보이는 숫자 갱신
+        m_viewCount--;
     }
 
 
@@ -47,22 +55,6 @@ public class UIRecruit : UIBase, ICharSlotClickCallBack
         SetCharInfo();
     }
 
-    public void RenewCharSlot()
-    {
-        int infoCount = 0;
-        for (int i = 0; i < charSlots.Length; i++)
-        {
-            if (charSlots[i] == null)
-            {
-                break;
-            }
-            charSlots[i].Renew();
-            charSlots[i].gameObject.SetActive(true);
-            infoCount++;
-        }
-        OffRestSlot(ref charSlots, infoCount);
-    }
-
     private void SetCharInfo()
     {
         for (int i = 0; i < tempRecruitCount; i++)
@@ -72,6 +64,7 @@ public class UIRecruit : UIBase, ICharSlotClickCallBack
             charSlots[i].SetInfo(charData, this);
             charSlots[i].gameObject.SetActive(true);
         }
+        m_viewCount = tempRecruitCount; //새로 뽑아준 수만큼 뷰 킴 
         OffRestSlot(ref charSlots, tempRecruitCount);
 
     }

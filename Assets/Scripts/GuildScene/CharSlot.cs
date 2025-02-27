@@ -42,16 +42,9 @@ public class CharSlot : MonoBehaviour
         InfoText.text = statInfo;
     }
 
-    public void Renew()
+    public CharactorData GetCharData()
     {
-        string statInfo = "";
-        statInfo = curCharData.Name + "\n";
-        for (int i = 0; i < curCharData.Stats.Length - 1; i++)
-        {
-            statInfo += (EnumCharctorStat)(i) + ":" + curCharData.Stats[i].ToString() + "\n";
-        }
-        statInfo += (EnumCharctorStat)(curCharData.Stats.Length - 1) + ":" + curCharData.Stats[curCharData.Stats.Length - 1].ToString();
-        InfoText.text = statInfo;
+       return curCharData;
     }
 
     public void OnClickBtn()
