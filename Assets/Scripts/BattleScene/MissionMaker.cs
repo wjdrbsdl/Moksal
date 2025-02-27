@@ -16,7 +16,7 @@ public class MissionMaker : MonoBehaviour
     public Transform[] m_targetPoints;
     public bool sceneMove = false;
     public static Mission curMission;
-
+    public int tempPlayerCount = 2;
     // Use this for initialization
     void Start()
     {
@@ -118,7 +118,7 @@ public class MissionMaker : MonoBehaviour
     private void AddPlayerChar()
     {
         //투입가능한 전장에 플레이어 넣기 -> 일단 일괄적으로 플레이어 전장이라고 표기된 부분에 넣기
-        CharactorData[] spawnPlayers = new CharactorData[1];
+        CharactorData[] spawnPlayers = new CharactorData[tempPlayerCount];
         for (int e = 0; e < spawnPlayers.Length; e++)
         {
             bool isPlayer = true;
