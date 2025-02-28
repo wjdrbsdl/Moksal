@@ -55,6 +55,11 @@ public class UIRecruit : UIBase, ICharSlotClickCallBack
         SetCharInfo();
     }
 
+    public void OnClickRenewCrew()
+    {
+        SetCharInfo();
+    }
+
     private void SetCharInfo()
     {
         for (int i = 0; i < tempRecruitCount; i++)
