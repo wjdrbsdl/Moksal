@@ -10,6 +10,8 @@ public class GuildData
 {
     public List<CharactorData> m_haveCharList = new List<CharactorData>();
     public int m_maxCharSpace = 5;
+    public int m_haveGold = 300;
+    public int m_reputation = 5;
 
     public bool Scout(CharactorData _char)
     {
@@ -22,15 +24,17 @@ public class GuildData
         return true;
     }
 
-    public void Fire(CharactorData _char)
+    public bool Fire(CharactorData _char)
     {
         int index = m_haveCharList.IndexOf(_char);
         if ( index < 0)
         {
             //없는 케릭이면 리턴
-            return;
+            return false;
         }
+        //돈 있는지 체크
         m_haveCharList.RemoveAt(index);
+        return true;
     }
 
     public List<CharactorData> GetCharList()

@@ -49,4 +49,15 @@ public class MGGuild : SigleTon<MGGuild>
     {
         return GuildData.GetCharList();
     }
+
+    public GuildData GetGuildData()
+    {
+        return GuildData;
+    }
+
+    public void Save()
+    {
+        SaveData save = new SaveData();
+        save.Save();
+    }
 }
