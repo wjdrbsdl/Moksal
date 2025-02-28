@@ -258,11 +258,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Window: {fileID: 448062433}
-  SlotSample: {fileID: 0}
+  SlotSample: {fileID: 1091970891}
   m_inputGrid: {fileID: 1785245067}
   m_haveGrid: {fileID: 1251172571}
   m_inputCharIcons: []
-  m_haveCharIcons: []
+  m_waitCharIcons: []
 --- !u!224 &47817849
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1817,7 +1817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.00000085867873, y: 44.1}
+  m_AnchoredPosition: {x: -0.00000085867873, y: 44.100006}
   m_SizeDelta: {x: 355, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &971570278
@@ -2245,6 +2245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1091970890}
   - component: {fileID: 1091970891}
+  - component: {fileID: 1091970892}
   m_Layer: 5
   m_Name: CharIconSample
   m_TagString: Untagged
@@ -2290,6 +2291,67 @@ MonoBehaviour:
   m_charIcon: {fileID: 1107091140}
   m_btnType: 0
   m_missionApply: {fileID: 47817848}
+  m_charData:
+    Name: 
+    isPlayer: 0
+    Stats: 
+    charObj: {fileID: 0}
+--- !u!114 &1091970892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091970889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1091970891}
+        m_TargetAssemblyTypeName: IconMissionChar, Assembly-CSharp
+        m_MethodName: OnClickIcon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1107091138
 GameObject:
   m_ObjectHideFlags: 0
