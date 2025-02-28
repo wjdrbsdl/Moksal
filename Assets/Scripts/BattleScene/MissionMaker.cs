@@ -34,6 +34,13 @@ public class MissionMaker : MonoBehaviour
         
     }
 
+    public Mission GetNewMission()
+    {
+        Mission mission = MakeMission(tempStep);
+        curMission = mission;
+        return mission;
+    }
+
     public void OnClickNewMissionByHireChar()
     {
         if (MGGuild.Instance.GetHaveCharList().Count<= 0)
