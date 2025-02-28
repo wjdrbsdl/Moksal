@@ -24,6 +24,7 @@ public class BattleManager : SigleTon<BattleManager>
 
     private void Start()
     {
+        m_actionRecorder = new ActionRecorder();
         ReadyStage();
     }
 
@@ -143,11 +144,18 @@ public class BattleManager : SigleTon<BattleManager>
         //결산 
         //해당 씬 파괴 
         //마을로 컴백
+        m_actionRecorder.Print();
         Invoke(nameof(LoadGuildScene),2f);
     }
 
     private void LoadGuildScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
+    private ActionRecorder m_actionRecorder;
+    public void RecordData(ActionData _data)
+    {
+        m_actionRecorder.AddData(_data);
     }
 }

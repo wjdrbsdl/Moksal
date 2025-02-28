@@ -148,13 +148,14 @@ public class CharactorObj : MonoBehaviour
                         //공격하고
                     m_aniState = EnumAniState.Attack;
                     PlayAnim();
-                    target.Attack(GetCharStat(EnumCharctorStat.AttackPower));
+                    ActionData attackRecorde = new ActionData(m_charData, target.m_charData, GetCharStat(EnumCharctorStat.AttackPower));
+                    target.Attack(attackRecorde);
                     m_curCool = 0;
                     m_curWaitTime = m_attackSpeed;
 
                     //공격이 들어간순간 - gameObject 파괴 속도에 따라 타겟 널이 갈릴 수있음.
                     //널인건 일단 죽였다는거, 여길왔다는건 얘가 때린거기때문에 보상 진행
-                    if(target!=null || target.IsDead())
+                    if(target==null || target.IsDead())
                     {
                         Debug.Log("상대 사망");
                         m_charData.CalStat(EnumCharctorStat.MoveSpeed, 3);
@@ -238,6 +239,13 @@ public class CharactorObj : MonoBehaviour
     {
      //   Debug.Log("타겟 공격 "+_power.ToString());
         m_charData.Attack(_power);
+    }
+
+    public void Attack(ActionData _attackRecord)
+    {
+        //피해자쪽에서 방어율 계산해서 최종 적용할 데미지 산출
+        BattleManager.Instance.RecordData(_attackRecord);
+        m_charData.Attack(_attackRecord.adaptDamage);
     }
 
     public void Dead()
