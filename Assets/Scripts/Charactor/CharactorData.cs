@@ -17,7 +17,7 @@ public class CharactorData
     public string Name;
     public bool isPlayer = true;
     public int[] Stats;
-    public CharactorObj charObj;
+    private CharactorObj charObj;
 
     public CharactorData(bool _isPlayer)
     {

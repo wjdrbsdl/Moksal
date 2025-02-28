@@ -221,7 +221,7 @@ public class CharactorObj : MonoBehaviour
     public void SetCharactorData(CharactorData _charData)
     {
         m_charData = _charData;
-        _charData.charObj = this;
+        _charData.SetCharObj(this);
 
         m_aniState = EnumAniState.Idle;
         m_animator = GetComponentInChildren<Animator>();
