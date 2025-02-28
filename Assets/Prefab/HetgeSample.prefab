@@ -46,8 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a3c287ccd23c24db8ce0e349172b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fieldNumber: 0
   isMonster: 1
+  m_charData:
+    Name: 
+    isPlayer: 0
+    Stats: 
+    temperament: 
   m_battleField:
     fieldNumber: 0
     pos: {x: 0, y: 0, z: 0}
@@ -58,9 +62,11 @@ MonoBehaviour:
     fieldUp: 0
     fieldDown: 0
     spawnRadius: 0
-    isPlayer: 0
+    ablePlayerSpawn: 0
     m_restMonsterCount: 0
+    m_spawnCharData: []
     charactorList: []
+    m_fieldObj: {fileID: 0}
 --- !u!1 &8604681561875343983
 GameObject:
   m_ObjectHideFlags: 0
