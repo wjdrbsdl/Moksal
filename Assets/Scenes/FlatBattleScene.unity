@@ -193,7 +193,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176606872}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bc413953eaf2db4396fb8513b2ceb2f, type: 3}
   m_Name: 
@@ -260,7 +260,7 @@ MonoBehaviour:
     battleFields: []
     inputPlayers: []
     finalGoal: 0
-    players: 0
+    inputPlayerCount: 1
   m_playerIconUI: {fileID: 971311453}
 --- !u!4 &232618810
 Transform:
@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 971311452}
   - component: {fileID: 971311453}
   m_Layer: 5
-  m_Name: Playeres
+  m_Name: BattleCharIcons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -985,7 +985,7 @@ GameObject:
   - component: {fileID: 1972477442}
   - component: {fileID: 1972477441}
   m_Layer: 5
-  m_Name: PlayerCharIcon
+  m_Name: BattleCharIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

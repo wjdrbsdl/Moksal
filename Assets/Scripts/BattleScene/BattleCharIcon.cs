@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharIcon : MonoBehaviour
+public class BattleCharIcon : MonoBehaviour
 {
     private CharactorObj m_charObj;
 

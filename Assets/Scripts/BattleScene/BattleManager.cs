@@ -15,7 +15,7 @@ public class BattleManager : SigleTon<BattleManager>
     public CameraFollows follower;
     public Mission curMission;
     private List<CharactorObj> m_charPlayerList = new();
-    public UIPlayerCharIcon m_playerIconUI;
+    public UIBattleCharIcon m_playerIconUI;
     //1. 전장 구현
     //2. 게임 시작 
     //3. 소탕이 끝난 전장의 플레이어들은 근접한 전장으로 이동
@@ -37,13 +37,14 @@ public class BattleManager : SigleTon<BattleManager>
         //플레이어 필드를 가지고 스폰된 캐릭터들 등록
         RegisterPlayer(playerField);
         //
-        MakeCharIcon();
+        MakeBattleCharIcon();
         //3. 카메라 플레이어 스폰된 필드 중 캐릭터 하나에 타겟
         AttachCam(playerField);
         //전투 시작
         //ContinueBattle(playerField);
     }
 
+    #region 전장 준비
     private void GenereateBattleField(Mission _mission, out BattleFieldData _playerField)
     {
         _playerField = null;
@@ -71,7 +72,7 @@ public class BattleManager : SigleTon<BattleManager>
         }
     }
 
-    private void MakeCharIcon()
+    private void MakeBattleCharIcon()
     {
         m_playerIconUI.SetCharIcons(m_charPlayerList);
     }
@@ -80,7 +81,9 @@ public class BattleManager : SigleTon<BattleManager>
     {
        CameraFollows.SetCamTarget( m_charPlayerList[0]);
     }
+    #endregion
 
+    #region 전장 진행
     private void ContinueBattle(BattleFieldData _curField)
     {
         //플레이 필드에 소환된 용병들에게
@@ -117,17 +120,22 @@ public class BattleManager : SigleTon<BattleManager>
         return curMission.battleFields[_battleField.fieldNumber + 1];
     }
 
+
+    #endregion
+
+    #region 전장 상황
     public void ReportBattle(int _fieldNum)
     {
         //몬스터 죽을때마다 보고 
         BattleFieldData reportField = curMission.GetBattleField(_fieldNum);
         reportField.KillMonster();
-        Debug.Log(reportField.fieldNumber +"영역 남은 몬스터 " + reportField.RestMonsterCount);
+        Debug.Log(reportField.fieldNumber + "영역 남은 몬스터 " + reportField.RestMonsterCount);
         if (reportField.RestMonsterCount == 0)
         {
             ContinueBattle(reportField);
         }
     }
+    #endregion 
 
     private void EndBattle()
     {
