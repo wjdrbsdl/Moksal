@@ -97,7 +97,7 @@ public class CharactorObj : MonoBehaviour
         if (target != null)
         {
             goal = target.gameObject.transform.position;
-            gap = m_charData.GetCharStat(EnumCharctorStat.AttackReach);
+            gap = GetCharStat(EnumCharctorStat.AttackReach);
         }
         else if(isFowardGoal == false)
         {
@@ -119,7 +119,7 @@ public class CharactorObj : MonoBehaviour
 
         m_aniState = EnumAniState.Move;
         PlayAnim();
-        transform.position += (goal - transform.position).normalized * Time.deltaTime * m_charData.GetCharStat(EnumCharctorStat.MoveSpeed);
+        transform.position += (goal - transform.position).normalized * Time.deltaTime * GetCharStat(EnumCharctorStat.MoveSpeed);
         
     
     }
@@ -130,7 +130,7 @@ public class CharactorObj : MonoBehaviour
         float gap = 0.3f;
         if (target != null)
         {
-            gap = m_charData.GetCharStat(EnumCharctorStat.AttackReach);
+            gap = GetCharStat(EnumCharctorStat.AttackReach);
         }
 
         //목적지 까지 도달했으면 행동함 
@@ -151,7 +151,7 @@ public class CharactorObj : MonoBehaviour
                         //공격하고
                     m_aniState = EnumAniState.Attack;
                     PlayAnim();
-                    target.Attack(m_charData.GetCharStat(EnumCharctorStat.AttackPower));
+                    target.Attack(GetCharStat(EnumCharctorStat.AttackPower));
                     m_curCool = 0;
                     m_curWaitTime = m_attackSpeed;
 
@@ -161,9 +161,9 @@ public class CharactorObj : MonoBehaviour
                         m_charData.CalStat(EnumCharctorStat.MoveSpeed, 1);
                         m_charData.CalStat(EnumCharctorStat.AttackPower, 3);
                         m_charData.AccelerateActionSpeed(-2);
-                        m_attackSpeed = Utility.CalHundred(m_charData.GetCharStat(EnumCharctorStat.ActionSpeed));
+                        m_attackSpeed = Utility.CalHundred(GetCharStat(EnumCharctorStat.ActionSpeed));
                         m_charData.AccelerateCoolTime(-2);
-                        m_attackCool = Utility.CalHundred(m_charData.GetCharStat(EnumCharctorStat.AttackCoolTime));
+                        m_attackCool = Utility.CalHundred(GetCharStat(EnumCharctorStat.AttackCoolTime));
                      
                     }
 
@@ -224,12 +224,16 @@ public class CharactorObj : MonoBehaviour
         m_aniState = EnumAniState.Idle;
         m_animator = GetComponentInChildren<Animator>();
 
-        m_attackCool = Utility.CalHundred(_charData.GetCharStat(EnumCharctorStat.AttackCoolTime));
+        m_attackCool = Utility.CalHundred(GetCharStat(EnumCharctorStat.AttackCoolTime));
         m_curCool = 0;
-        m_attackSpeed = Utility.CalHundred( _charData.GetCharStat(EnumCharctorStat.ActionSpeed));
+        m_attackSpeed = Utility.CalHundred(GetCharStat(EnumCharctorStat.ActionSpeed));
     }
 
  
+    public int GetCharStat(EnumCharctorStat _charStat)
+    {
+        return m_charData.GetCharStat(_charStat);
+    }
 
     public void Attack(int _power)
     {
@@ -250,7 +254,7 @@ public class CharactorObj : MonoBehaviour
 
     public bool IsDead()
     {
-        return m_charData.GetCharStat(EnumCharctorStat.CurHp) <= 0;
+        return GetCharStat(EnumCharctorStat.CurHp) <= 0;
     }
 
     public void MoveNextField(BattleFieldData _nextField)
