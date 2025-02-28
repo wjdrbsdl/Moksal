@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,12 @@ public enum EnumCharctorStat
     MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, Sight, ActionSpeed
 }
 
+public enum EnumCharTemperament
+{
+    광기, 겁쟁이, 주먹숭배, 마조히즘, 독선자
+}
+
+
 [Serializable]
 public class CharactorData
 {
@@ -18,6 +25,7 @@ public class CharactorData
     public bool isPlayer = true;
     public int[] Stats;
     private CharactorObj charObj;
+    public EnumCharTemperament[] temperament;
 
     public CharactorData(bool _isPlayer)
     {
@@ -35,6 +43,31 @@ public class CharactorData
         Stats[(int)EnumCharctorStat.ActionSpeed] = 100;
         MakeCount++;
         isPlayer = _isPlayer;
+        DiceTemperament();
+    }
+
+    private void DiceTemperament()
+    {
+        int randomCount = 5; //배열을 섞을 횟수
+        Random random = new Random();
+        int temperCount = Enum.GetValues(typeof(EnumCharTemperament)).Length;
+        int[] indexArray = new int[temperCount];
+        for (int i = 0; i < indexArray.Length; i++)
+        {
+            indexArray[i] = i;
+        }
+
+        //섞기
+        for (int i = 0; i < randomCount; i++)
+        {
+            int startIndex = i % temperCount;
+            int dice = random.Next() % temperCount;
+            int tempValue = indexArray[startIndex];
+            indexArray[startIndex] = indexArray[dice];
+            indexArray[dice] = tempValue;
+        }
+        //2개 할당
+        temperament = new EnumCharTemperament[] { (EnumCharTemperament)indexArray[0], (EnumCharTemperament)indexArray[1] };
     }
 
     public int GetCharStat(EnumCharctorStat _charStat)
