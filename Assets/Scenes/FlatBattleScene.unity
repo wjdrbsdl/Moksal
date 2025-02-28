@@ -258,6 +258,7 @@ MonoBehaviour:
   follower: {fileID: 688947684}
   curMission:
     battleFields: []
+    inputPlayers: []
     finalGoal: 0
     players: 0
   m_playerIconUI: {fileID: 971311453}
