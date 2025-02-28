@@ -15,6 +15,11 @@ public class UIMissionApply : UIBase
 
     public void OpenApply(Mission _mission)
     {
+        Window.SetActive(!Window.activeSelf);
+
+        if (Window.activeSelf == false)
+            return;
+
         int inputCount = _mission.inputPlayerCount;
         MakeSamplePool(ref m_inputCharIcons, SlotSample.gameObject, inputCount, m_inputGrid);
 
@@ -30,7 +35,7 @@ public class UIMissionApply : UIBase
         for (int i = 0; i < m_inputCharIcons.Length; i++)
         {
             m_inputCharIcons[i].gameObject.SetActive(false);
-            m_haveCharIcons[i].SetIcon(EMissionBtnType.Input);
+            m_inputCharIcons[i].SetIcon(EMissionBtnType.Input);
         }
     }
 
