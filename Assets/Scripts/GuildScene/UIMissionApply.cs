@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIMissionApply : UIBase
 {
@@ -9,6 +10,8 @@ public class UIMissionApply : UIBase
     public IconMissionChar SlotSample;//슬롯 만들 샘플
     public Transform m_inputGrid;//만들 그리드
     public Transform m_haveGrid;//만들 그리드
+    public Text m_inputNames;
+    private string m_firstWord = "참가자 : ";
 
     public IconMissionChar[] m_inputCharIcons; //정보 표기할 슬롯들
     public IconMissionChar[] m_waitCharIcons; //정보 표기할 슬롯들
@@ -42,6 +45,8 @@ public class UIMissionApply : UIBase
             m_waitList.Add(haveCharList[i]);
         }
         ableInputCount = _mission.inputPlayerCount;
+
+        m_inputNames.text = m_firstWord;
     }
 
     private void InputOff()
@@ -79,6 +84,7 @@ public class UIMissionApply : UIBase
 
         //뭐든 했으면 슬롯은 다시 갱신
         RenewSlots();
+        RenewName();
     }
 
     public void GoMission()
@@ -126,4 +132,12 @@ public class UIMissionApply : UIBase
         OffRestSlot(ref m_waitCharIcons, m_waitList.Count);
     }
 
+    private void RenewName()
+    {
+        m_inputNames.text = m_firstWord;
+        for (int i = 0; i < m_inputList.Count; i++)
+        {
+            m_inputNames.text += m_inputList[i].Name+" ";
+        }
+    }
 }
