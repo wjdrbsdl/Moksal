@@ -3,20 +3,26 @@
 
 public class CharactorObj : MonoBehaviour
 {
-    public int m_fieldNumber;
+    #region 고유 데이터
     public bool isMonster = true;
-    public BattleFieldData m_battleField; //현재 케릭터가 있는 전장
     public CharactorData m_charData;
+    #endregion
 
+    #region 플레이어 행동 데이터
+    public BattleFieldData m_battleField; //현재 케릭터가 있는 전장
     private Animator m_animator;
-    private float m_attackSpeed; //공격 속도 - 공격 프레임이 끝나는 주기? -> 하는 행동에 따라 값을 받아올것. 
+    private float m_actionSpeed; //공격 속도 - 공격 프레임이 끝나는 주기? -> 하는 행동에 따라 값을 받아올것. 
     private float m_curWaitTime = 0; //동작 대기 시간 
-    private float m_attackCool;
+
+    private float m_actionCool;
     private float m_curCool;
+
     private CharactorObj target;
     private Vector3 goal; //타겟없을때 목적지
     private bool isFowardGoal; //골로 향하는 중인가
     private EnumAniState m_aniState;
+    #endregion
+
     enum EnumAniState
     {
         Idle, Move, Attack
@@ -136,7 +142,7 @@ public class CharactorObj : MonoBehaviour
             if (target != null)
             {
                 //타겟 쫓아왔으면 공격
-                if(m_curCool >= m_attackCool)
+                if(m_curCool >= m_actionCool)
                 {
                     if (target.IsDead())
                     {
@@ -151,7 +157,7 @@ public class CharactorObj : MonoBehaviour
                     ActionData attackRecorde = new ActionData(m_charData, target.m_charData, GetCharStat(EnumCharctorStat.AttackPower));
                     target.Attack(attackRecorde);
                     m_curCool = 0;
-                    m_curWaitTime = m_attackSpeed;
+                    m_curWaitTime = m_actionSpeed;
 
                     //공격이 들어간순간 - gameObject 파괴 속도에 따라 타겟 널이 갈릴 수있음.
                     //널인건 일단 죽였다는거, 여길왔다는건 얘가 때린거기때문에 보상 진행
@@ -161,9 +167,9 @@ public class CharactorObj : MonoBehaviour
                         m_charData.CalStat(EnumCharctorStat.MoveSpeed, 3);
                         m_charData.CalStat(EnumCharctorStat.AttackPower, 3);
                         m_charData.AccelerateActionSpeed(-2);
-                        m_attackSpeed = Utility.CalHundred(GetCharStat(EnumCharctorStat.ActionSpeed));
+                        m_actionSpeed = Utility.CalHundred(GetCharStat(EnumCharctorStat.ActionSpeed));
                         m_charData.AccelerateCoolTime(-2);
-                        m_attackCool = Utility.CalHundred(GetCharStat(EnumCharctorStat.AttackCoolTime));
+                        m_actionCool = Utility.CalHundred(GetCharStat(EnumCharctorStat.AttackCoolTime));
                      
                     }
 
@@ -224,9 +230,9 @@ public class CharactorObj : MonoBehaviour
         m_aniState = EnumAniState.Idle;
         m_animator = GetComponentInChildren<Animator>();
 
-        m_attackCool = Utility.CalHundred(GetCharStat(EnumCharctorStat.AttackCoolTime));
+        m_actionCool = Utility.CalHundred(GetCharStat(EnumCharctorStat.AttackCoolTime));
         m_curCool = 0;
-        m_attackSpeed = Utility.CalHundred(GetCharStat(EnumCharctorStat.ActionSpeed));
+        m_actionSpeed = Utility.CalHundred(GetCharStat(EnumCharctorStat.ActionSpeed));
     }
 
  
