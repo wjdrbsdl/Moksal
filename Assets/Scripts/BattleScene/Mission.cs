@@ -11,7 +11,7 @@ public class Mission
     public Mission()
     {
         Random random = new();
-        inputPlayerCount = random.Next() % 6 + 1;
+        inputPlayerCount = random.Next() % 3 + 1;
     }
 
     public BattleFieldData GetBattleField(int _index)
