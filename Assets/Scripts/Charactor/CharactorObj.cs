@@ -151,7 +151,7 @@ public class CharactorObj : MonoBehaviour
                         //공격하고
                     m_aniState = EnumAniState.Attack;
                     PlayAnim();
-                    target.Attack();
+                    target.Attack(m_charData.GetCharStat(EnumCharctorStat.AttackPower));
                     m_curCool = 0;
                     m_curWaitTime = m_attackSpeed;
 
@@ -231,10 +231,10 @@ public class CharactorObj : MonoBehaviour
 
  
 
-    public void Attack()
+    public void Attack(int _power)
     {
         Debug.Log("타겟 공격");
-        m_charData.Attack(10);
+        m_charData.Attack(_power);
     }
 
     public void Dead()
