@@ -18,7 +18,7 @@ public class UIMercenary : UIBase
         if (Window.activeSelf == false)
             return;
 
-        List<CharactorData> _haveMercenaryList = MGGuild.GuildData.GetCharList();
+        List<CharactorData> _haveMercenaryList = MGGuild.Instance.GetHaveCharList();
         //보유한 용병 데이터를 가지고 용병 정보창 생성 
         //창을 연다
         tempRecruitCount = _haveMercenaryList.Count;

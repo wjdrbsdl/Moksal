@@ -1,16 +1,25 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public class MGGuild : SigleTon<MGGuild>
 {
-    public static GuildData GuildData;
+    private static GuildData GuildData;
 
     // Use this for initialization
     void Start()
     {
-        GuildData guildData = new GuildData();
-        GuildData = guildData;
+        if(GuildData == null)
+        {
+            Debug.Log("최초 길드 데이터 생성");
+            GuildData guildData = new GuildData();
+            GuildData = guildData;
+        }
+        else
+        {
+            Debug.Log("길드데이터 존재");
+        }
     }
 
     public void OnClickScout(CharactorData _scoutChar)
@@ -20,5 +29,9 @@ public class MGGuild : SigleTon<MGGuild>
     public void OnClickFire(CharactorData _fireChar)
     {
         GuildData.Fire(_fireChar);
+    }
+    public List<CharactorData> GetHaveCharList()
+    {
+        return GuildData.GetCharList();
     }
 }
