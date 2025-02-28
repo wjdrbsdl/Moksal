@@ -34,6 +34,7 @@ public class BattleFieldData
 
     public CharactorData[] m_spawnCharData; //스폰시킬 케릭 데이터들
     public List<CharactorObj> charactorList; //현재 필드에 있는 케릭터 Obj
+    public GameObject m_fieldObj;
 
     //전투가 일어나는 영역
     //배틀매니저는 각 필드를 돌아보며 전시상황을 살펴보고 
@@ -83,7 +84,7 @@ public class BattleFieldData
     {
         GameObject fieldObj = MonoBehaviour.Instantiate(AssetManager.Instance.m_fieldObj, pos, Quaternion.identity);
         fieldObj.transform.localScale = new Vector3(width, height, 1);
-        
+        m_fieldObj = fieldObj;
         //정보들을 가지고 영역 생성
         //생성 갯수, 만들 샘플, 만들 위치, 구 범위로 만들어서 y 값만 0으로 조정 
         int spawnCount = m_spawnCharData.Length;

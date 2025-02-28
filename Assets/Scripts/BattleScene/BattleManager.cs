@@ -16,6 +16,7 @@ public class BattleManager : SigleTon<BattleManager>
     public Mission curMission;
     private List<CharactorObj> m_charPlayerList = new();
     public UIBattleCharIcon m_playerIconUI;
+    private BattleFieldData m_curField;
     //1. 전장 구현
     //2. 게임 시작 
     //3. 소탕이 끝난 전장의 플레이어들은 근접한 전장으로 이동
@@ -43,6 +44,7 @@ public class BattleManager : SigleTon<BattleManager>
         AttachCam(playerField);
         //전투 시작
         //ContinueBattle(playerField);
+        m_curField = _mission.GetBattleField(0);
     }
 
     #region 전장 준비
@@ -91,14 +93,17 @@ public class BattleManager : SigleTon<BattleManager>
         //다음 배틀필드로 이동을 명령하면서 전투 시작 
         //다음 전투지는 현재 ++ 인덱스로 계산
         Debug.Log(_curField.fieldNumber + "영역에서 다음 배틀필드 이동");
-        BattleFieldData nextFiled = FindNextBattleField(_curField);
+        BattleFieldData nextField = FindNextBattleField(_curField);
 
-        if(nextFiled == null)
+        if(nextField == null)
         {
             Debug.Log("전장 끝");
             EndBattle();
             return;
         }
+        m_curField = nextField;
+        if (CameraFollows.followingChar == false)
+            CameraFollows.SetFieldTarget(m_curField);
         //현재 필드에 있는 영웅들을 
         //다음 지역으로 이동 시키기 
         for (int i = 0; i < m_charPlayerList.Count; i++)
@@ -106,7 +111,7 @@ public class BattleManager : SigleTon<BattleManager>
             if (m_charPlayerList[i] == null)
                 continue;
 
-            m_charPlayerList[i].MoveNextField(nextFiled);
+            m_charPlayerList[i].MoveNextField(nextField);
         }
     }
 
@@ -157,5 +162,10 @@ public class BattleManager : SigleTon<BattleManager>
     public void RecordData(ActionData _data)
     {
         m_actionRecorder.AddData(_data);
+    }
+
+    public void CamField()
+    {
+        CameraFollows.SetFieldTarget(m_curField);
     }
 }
