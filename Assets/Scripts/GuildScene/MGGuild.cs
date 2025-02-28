@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class MGGuild : SigleTon<MGGuild>
@@ -36,6 +37,12 @@ public class MGGuild : SigleTon<MGGuild>
     public void ApplyMission()
     {
         m_missionApplyUI.OpenApply(m_missionMaker.GetNewMission());
+    }
+
+    public void GoMission(List<CharactorData> _selectCharList)
+    {
+        m_missionMaker.AddPlayerChar(_selectCharList);
+        SceneManager.LoadScene(1);
     }
 
     public List<CharactorData> GetHaveCharList()

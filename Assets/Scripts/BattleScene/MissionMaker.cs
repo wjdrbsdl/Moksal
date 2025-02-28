@@ -152,7 +152,7 @@ public class MissionMaker : MonoBehaviour
 
     }
 
-    private void AddPlayerChar(List<CharactorData> _charDataList)
+    public void AddPlayerChar(List<CharactorData> _charDataList)
     {
         CharactorData[] spawnPlayers = _charDataList.ToArray();
         curMission.inputPlayers = spawnPlayers;

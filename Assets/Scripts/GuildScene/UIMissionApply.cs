@@ -13,9 +13,7 @@ public class UIMissionApply : UIBase
     public IconMissionChar[] m_inputCharIcons; //정보 표기할 슬롯들
     public IconMissionChar[] m_waitCharIcons; //정보 표기할 슬롯들
 
-    [SerializeField]
     private List<CharactorData> m_inputList;
-    [SerializeField]
     private List<CharactorData> m_waitList;
     private int ableInputCount; //투입가능수
     public void OpenApply(Mission _mission)
@@ -81,6 +79,12 @@ public class UIMissionApply : UIBase
 
         //뭐든 했으면 슬롯은 다시 갱신
         RenewSlots();
+    }
+
+    public void GoMission()
+    {
+        if(m_inputList.Count>=1)
+        MGGuild.Instance.GoMission(m_inputList);
     }
 
     private void TakeOffChar(CharactorData _charData)
