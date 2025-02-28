@@ -30,6 +30,14 @@ public class MGGuild : SigleTon<MGGuild>
     {
         GuildData.Fire(_fireChar);
     }
+
+    public UIMissionApply m_missionApplyUI;
+    public MissionMaker m_missionMaker;
+    public void ApplyMission()
+    {
+        m_missionApplyUI.OpenApply(m_missionMaker.GetNewMission());
+    }
+
     public List<CharactorData> GetHaveCharList()
     {
         return GuildData.GetCharList();
