@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Net.NetworkInformation;
-using UnityEditor.Animations;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class CharactorObj : MonoBehaviour
@@ -119,7 +116,7 @@ public class CharactorObj : MonoBehaviour
 
         m_aniState = EnumAniState.Move;
         PlayAnim();
-        transform.position += (goal - transform.position).normalized * Time.deltaTime * GetCharStat(EnumCharctorStat.MoveSpeed);
+        transform.position += (goal - transform.position).normalized * Time.deltaTime * Utility.CalHundred(GetCharStat(EnumCharctorStat.MoveSpeed));
         
     
     }
@@ -160,7 +157,7 @@ public class CharactorObj : MonoBehaviour
                     if(target!=null || target.IsDead())
                     {
                         Debug.Log("상대 사망");
-                        m_charData.CalStat(EnumCharctorStat.MoveSpeed, 1);
+                        m_charData.CalStat(EnumCharctorStat.MoveSpeed, 3);
                         m_charData.CalStat(EnumCharctorStat.AttackPower, 3);
                         m_charData.AccelerateActionSpeed(-2);
                         m_attackSpeed = Utility.CalHundred(GetCharStat(EnumCharctorStat.ActionSpeed));
@@ -239,7 +236,7 @@ public class CharactorObj : MonoBehaviour
 
     public void Attack(int _power)
     {
-        Debug.Log("타겟 공격 "+_power.ToString());
+     //   Debug.Log("타겟 공격 "+_power.ToString());
         m_charData.Attack(_power);
     }
 

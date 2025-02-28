@@ -29,7 +29,7 @@ public class CharactorData
             int randomPower = random.Next() % 99+1; //임의로 스텟 값 0~99
             Stats[i] = randomPower;
         }
-        Stats[(int)EnumCharctorStat.MoveSpeed] = 3;
+        Stats[(int)EnumCharctorStat.MoveSpeed] = 300;
         Stats[(int)EnumCharctorStat.AttackReach] = 1;
         Stats[(int)EnumCharctorStat.AttackCoolTime] = 200;
         Stats[(int)EnumCharctorStat.ActionSpeed] = 100;
