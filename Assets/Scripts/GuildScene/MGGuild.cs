@@ -22,9 +22,9 @@ public class MGGuild : SigleTon<MGGuild>
         }
     }
 
-    public void OnClickScout(CharactorData _scoutChar)
+    public bool OnClickScout(CharactorData _scoutChar)
     {
-        GuildData.Scout(_scoutChar);
+        return GuildData.Scout(_scoutChar);
     }
     public void OnClickFire(CharactorData _fireChar)
     {

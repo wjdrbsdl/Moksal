@@ -51,8 +51,11 @@ public class CharSlot : MonoBehaviour
     {
         if(function == EnumCharSlotFunction.Scout)
         {
-            MGGuild.Instance.OnClickScout(curCharData);
-            iClickCallBack.OnClickCharSlot(this);
+            bool isHire = MGGuild.Instance.OnClickScout(curCharData);
+            if (isHire)
+                iClickCallBack.OnClickCharSlot(this);
+            else
+                Debug.Log("길드 공간 부족");
         }
         else if (function == EnumCharSlotFunction.Fire)
         {
