@@ -36,14 +36,14 @@ public class MissionMaker : MonoBehaviour
 
     public void OnClickNewMissionByHireChar()
     {
-        if (MGGuild.GuildData.m_haveCharList.Count <= 0)
+        if (MGGuild.Instance.GetHaveCharList().Count<= 0)
         {
             Debug.Log("보유케릭없음");
             return;
         }
 
         curMission = MakeMission(tempStep);
-        AddPlayerChar(MGGuild.GuildData.m_haveCharList);
+        AddPlayerChar(MGGuild.Instance.GetHaveCharList());
         Invoke(nameof(LoadBattleScene), 2f);
     }
 
