@@ -155,7 +155,9 @@ public class CharactorObj : MonoBehaviour
                     m_curCool = 0;
                     m_curWaitTime = m_attackSpeed;
 
-                    if(target.IsDead())
+                    //공격이 들어간순간 - gameObject 파괴 속도에 따라 타겟 널이 갈릴 수있음.
+                    //널인건 일단 죽였다는거, 여길왔다는건 얘가 때린거기때문에 보상 진행
+                    if(target!=null || target.IsDead())
                     {
                         Debug.Log("상대 사망");
                         m_charData.CalStat(EnumCharctorStat.MoveSpeed, 1);
@@ -237,7 +239,7 @@ public class CharactorObj : MonoBehaviour
 
     public void Attack(int _power)
     {
-        Debug.Log("타겟 공격");
+        Debug.Log("타겟 공격 "+_power.ToString());
         m_charData.Attack(_power);
     }
 
