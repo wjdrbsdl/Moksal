@@ -40,7 +40,9 @@ public class CharSlot : MonoBehaviour
         {
             statInfo += (EnumCharctorStat)(i) + ":" + _charData.Stats[i].ToString() + "\n";
         }
-        statInfo += (EnumCharctorStat)(_charData.Stats.Length - 1) + ":" + _charData.Stats[_charData.Stats.Length - 1].ToString();
+        statInfo += (EnumCharctorStat)(_charData.Stats.Length - 1) + ":" + _charData.Stats[_charData.Stats.Length - 1].ToString()+"\n";
+        string temper = _charData.temperament[0].ToString() + " " + _charData.temperament[1].ToString();
+        statInfo += temper;
         InfoText.text = statInfo;
     }
 
