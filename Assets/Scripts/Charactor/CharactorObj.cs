@@ -120,7 +120,13 @@ public class CharactorObj : MonoBehaviour
         m_curWaitTime = _delayTime;
     }
 
+
     #region 공용
+    public void ShowDialog()
+    {
+
+    }
+
     public void RestrictPos(ref Vector3 _goal)
     {
         _goal.x = Mathf.Min(m_battleField.fieldRight, _goal.x);
