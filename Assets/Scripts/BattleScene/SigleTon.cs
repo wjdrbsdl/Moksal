@@ -18,6 +18,10 @@ public class SigleTon<T> : MonoBehaviour where T : MonoBehaviour
                // Debug.Log("인스턴스가 null" + typeof(T).Name);
                 instance = FindObjectOfType<T>();
             }
+            if(instance == null)
+            {
+                instance = Instantiate(new GameObject()).AddComponent<T>();
+            }
       
             return instance;
         }
