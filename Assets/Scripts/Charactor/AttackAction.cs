@@ -17,6 +17,12 @@ public class AttackAction : CharActionBase, ICharAction
         m_culCoolTime = 1f;
     }
 
+    public void SetAttackProperty(TAttackType _attackType)
+    {
+        m_actionDelayTime = Utility.CalHundred( _attackType.AttackDelayTime);
+        m_actionCoolTime = Utility.CalHundred(_attackType.AttackCoolTime);
+    }
+
     public void Update(CharactorObj _actionObj)
     {
         m_culCoolTime -= Time.deltaTime;
