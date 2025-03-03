@@ -37,10 +37,12 @@ public class CharactorObj : MonoBehaviour
         if(curAction == null)
         {
             int randomAction = Random.Range(0, 2);
+            ShowDialog();
             curAction = haveActions[randomAction];
             curAction.CalDeltaTime();
         }
         curAction.Update(this);
+   
     }
 
     private bool AbleActionState()
@@ -121,10 +123,14 @@ public class CharactorObj : MonoBehaviour
     }
 
 
+    CharDialog dialog;
     #region 공용
     public void ShowDialog()
     {
+        if(dialog == null)
+        dialog = CharDialogManager.Instance.GetDialogObj();
 
+        dialog.ShowDialog(this," 수행");
     }
 
     public void RestrictPos(ref Vector3 _goal)
@@ -173,6 +179,7 @@ public class CharactorObj : MonoBehaviour
     public void Dead()
     {
         BattleManager.Instance.ReportBattle(m_battleField.fieldNumber);
+        Destroy(dialog.gameObject);
         Invoke(nameof(ObjDestroy), 0.1f);
     }
 
