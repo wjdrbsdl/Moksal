@@ -155,7 +155,7 @@ public class CharactorObj : MonoBehaviour
 
         m_actionCool = Utility.CalHundred(GetCharStat(EnumCharctorStat.AttackCoolTime));
         ResetCool();
-        m_actionSpeed = Utility.CalHundred(GetCharStat(EnumCharctorStat.ActionSpeed));
+        m_actionSpeed = Utility.CalHundred(GetCharStat(EnumCharctorStat.ActionDelay));
     }
 
     public int GetCharStat(EnumCharctorStat _charStat)

@@ -55,7 +55,7 @@ public class AttackAction : CharActionBase, ICharAction
                     m_charData.CalStat(EnumCharctorStat.MoveSpeed, 3);
                     m_charData.CalStat(EnumCharctorStat.AttackPower, 3);
                     m_charData.AccelerateActionSpeed(-2);
-                    m_actionDelayTime = Utility.CalHundred(_actionObj.GetCharStat(EnumCharctorStat.ActionSpeed));
+                    m_actionDelayTime = Utility.CalHundred(_actionObj.GetCharStat(EnumCharctorStat.ActionDelay));
                     m_charData.AccelerateCoolTime(-2);
                     m_actionCoolTime = Utility.CalHundred(_actionObj.GetCharStat(EnumCharctorStat.AttackCoolTime));
                     ResetAction(_actionObj);

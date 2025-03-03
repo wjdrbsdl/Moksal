@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public enum EnumCharctorStat
 {
-    MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, Sight, ActionSpeed
+    MaxHp, CurHp, AttackPower, DefencePower, MoveSpeed, AttackReach, AttackCoolTime, Sight, ActionDelay
 }
 
 public enum EnumCharTemperament
@@ -40,7 +40,7 @@ public class CharactorData
         Stats[(int)EnumCharctorStat.MoveSpeed] = 300;
         Stats[(int)EnumCharctorStat.AttackReach] = 1;
         Stats[(int)EnumCharctorStat.AttackCoolTime] = 200;
-        Stats[(int)EnumCharctorStat.ActionSpeed] = 100;
+        Stats[(int)EnumCharctorStat.ActionDelay] = 100;
         MakeCount++;
         isPlayer = _isPlayer;
         DiceTemperament();
@@ -82,10 +82,10 @@ public class CharactorData
 
     public void AccelerateActionSpeed(int _value)
     {
-        Stats[(int)EnumCharctorStat.ActionSpeed] += _value;
-        if (Stats[(int)EnumCharctorStat.ActionSpeed] <= 2)
+        Stats[(int)EnumCharctorStat.ActionDelay] += _value;
+        if (Stats[(int)EnumCharctorStat.ActionDelay] <= 2)
         {
-            Stats[(int)EnumCharctorStat.ActionSpeed] = 2;
+            Stats[(int)EnumCharctorStat.ActionDelay] = 2;
         }
     }
 
