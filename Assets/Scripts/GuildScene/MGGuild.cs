@@ -13,13 +13,9 @@ public class MGGuild : SigleTon<MGGuild>
     {
         if(GuildData == null)
         {
-            Debug.Log("최초 길드 데이터 생성");
+       //     Debug.Log("최초 길드 데이터 생성");
             GuildData guildData = new GuildData();
             GuildData = guildData;
-        }
-        else
-        {
-            Debug.Log("길드데이터 존재");
         }
     }
 

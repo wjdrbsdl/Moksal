@@ -51,7 +51,7 @@ public class AttackAction : CharActionBase, ICharAction
                 CharactorData m_charData = _actionObj.m_charData;
                 if (target == null || target.IsDead())
                 {
-                    Debug.Log("상대 사망");
+              //      Debug.Log("상대 사망");
                     m_charData.CalStat(EnumCharctorStat.MoveSpeed, 3);
                     m_charData.CalStat(EnumCharctorStat.AttackPower, 3);
                     m_charData.AccelerateActionSpeed(-2);

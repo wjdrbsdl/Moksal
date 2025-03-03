@@ -92,7 +92,7 @@ public class BattleManager : SigleTon<BattleManager>
         //플레이 필드에 소환된 용병들에게
         //다음 배틀필드로 이동을 명령하면서 전투 시작 
         //다음 전투지는 현재 ++ 인덱스로 계산
-        Debug.Log(_curField.fieldNumber + "영역에서 다음 배틀필드 이동");
+      //  Debug.Log(_curField.fieldNumber + "영역에서 다음 배틀필드 이동");
         BattleFieldData nextField = FindNextBattleField(_curField);
 
         if(nextField == null)
@@ -135,7 +135,7 @@ public class BattleManager : SigleTon<BattleManager>
         //몬스터 죽을때마다 보고 
         BattleFieldData reportField = curMission.GetBattleField(_fieldNum);
         reportField.KillMonster();
-        Debug.Log(reportField.fieldNumber + "영역 남은 몬스터 " + reportField.RestMonsterCount);
+     //   Debug.Log(reportField.fieldNumber + "영역 남은 몬스터 " + reportField.RestMonsterCount);
         if (reportField.RestMonsterCount == 0)
         {
             ContinueBattle(reportField);
