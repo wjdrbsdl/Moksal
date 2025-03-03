@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 
 public enum EnumCharctorStat
@@ -27,6 +23,10 @@ public class CharactorData
     private CharactorObj charObj;
     public EnumCharTemperament[] temperament;
 
+    public ICharAction[] haveActions; //보유한 행동
+    public static TAttackType[] gAttackData = { new TAttackType(10, 100, 100, 2 ), new TAttackType(1, 300, 300, 10) };
+    public TAttackType curAttack;
+
     public CharactorData(bool _isPlayer)
     {
         Stats = new int[Enum.GetValues(typeof(EnumCharctorStat)).Length];
@@ -43,6 +43,16 @@ public class CharactorData
         Stats[(int)EnumCharctorStat.ActionDelay] = 100;
         MakeCount++;
         isPlayer = _isPlayer;
+
+        //행동 설정
+        haveActions = new ICharAction[]{ new AttackAction(), new WanderAction() }; //보유행동 입력
+        //공격인 경유 공격 유형대로 속성 값 설정
+        curAttack = gAttackData[MakeCount % 2]; //해당 캐릭 공격유형 설정 - 공격액션없으면 안할짓
+        (haveActions[0] as AttackAction).SetAttackProperty(curAttack); //쿨, 딜레이
+        SetCharStat(EnumCharctorStat.AttackReach, curAttack.AttackReach); //사거리
+        SetCharStat(EnumCharctorStat.AttackPower, curAttack.AttackPower); //파워
+
+        //기질
         DiceTemperament();
     }
 
@@ -73,6 +83,11 @@ public class CharactorData
     public int GetCharStat(EnumCharctorStat _charStat)
     {
         return Stats[(int)_charStat];
+    }
+
+    public void SetCharStat(EnumCharctorStat _charStat, int _value)
+    {
+        Stats[(int)_charStat] = _value;
     }
 
     public void CalStat(EnumCharctorStat _charStat, int _value)

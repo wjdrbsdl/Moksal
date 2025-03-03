@@ -21,7 +21,7 @@ public class CharactorObj : MonoBehaviour
     public float m_actionCool;
     public float m_curCool;
 
-    public ICharAction[] haveActions = {new AttackAction(), new WanderAction()}; //보유한 행동
+ 
     #endregion
 
   
@@ -38,7 +38,7 @@ public class CharactorObj : MonoBehaviour
         {
             int randomAction = Random.Range(0, 2);
             ShowDialog();
-            curAction = haveActions[randomAction];
+            curAction = m_charData.haveActions[randomAction];
             curAction.CalDeltaTime();
         }
         curAction.Update(this);
