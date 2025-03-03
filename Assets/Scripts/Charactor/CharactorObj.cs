@@ -24,9 +24,7 @@ public class CharactorObj : MonoBehaviour
  
     #endregion
 
-  
-
-    private ICharAction curAction;
+    private CharActionBase curAction;
     private void Update()
     {
         m_curCool += Time.deltaTime; //현재쿨 갱신

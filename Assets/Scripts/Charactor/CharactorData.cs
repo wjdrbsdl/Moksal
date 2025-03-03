@@ -23,7 +23,7 @@ public class CharactorData
     private CharactorObj charObj;
     public EnumCharTemperament[] temperament;
 
-    public ICharAction[] haveActions; //보유한 행동
+    public CharActionBase[] haveActions; //보유한 행동
     public static TAttackType[] gAttackData = { new TAttackType(10, 100, 100, 2 ), new TAttackType(1, 300, 300, 10) };
     public TAttackType curAttack;
 
@@ -45,7 +45,7 @@ public class CharactorData
         isPlayer = _isPlayer;
 
         //행동 설정
-        haveActions = new ICharAction[]{ new AttackAction(), new WanderAction() }; //보유행동 입력
+        haveActions = new CharActionBase[]{ new AttackAction(), new WanderAction() }; //보유행동 입력
         //공격인 경유 공격 유형대로 속성 값 설정
         curAttack = gAttackData[MakeCount % 2]; //해당 캐릭 공격유형 설정 - 공격액션없으면 안할짓
         (haveActions[0] as AttackAction).SetAttackProperty(curAttack); //쿨, 딜레이

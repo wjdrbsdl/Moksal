@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class CharActionBase
+public abstract class CharActionBase
 {
     protected float m_actionDelayTime = 1f; //해당 공격이후 지체시간
     protected float m_actionCoolTime = 1f; //공격 주기
@@ -17,4 +17,6 @@ public class CharActionBase
         TimeSpan span = DateTime.Now - m_preTime;
         m_culCoolTime -= (float)span.TotalMilliseconds;
     }
+
+    public abstract void Update(CharactorObj _charObj);
 }

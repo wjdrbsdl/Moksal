@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-public class AttackAction : CharActionBase, ICharAction
+public class AttackAction : CharActionBase
 {
     Vector3 goal;
     private CharactorObj target;
