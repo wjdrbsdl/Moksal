@@ -67,6 +67,10 @@ MonoBehaviour:
     m_spawnCharData: []
     charactorList: []
     m_fieldObj: {fileID: 0}
+  m_actionSpeed: 0
+  m_curWaitTime: 0
+  m_actionCool: 0
+  m_curCool: 0
 --- !u!1 &8604681561875343983
 GameObject:
   m_ObjectHideFlags: 0
