@@ -23,7 +23,7 @@ public class AttackAction : CharActionBase
         m_actionCoolTime = Utility.CalHundred(_attackType.AttackCoolTime);
     }
 
-    public void Update(CharactorObj _actionObj)
+    public override void Update(CharactorObj _actionObj)
     {
         m_culCoolTime -= Time.deltaTime;
         FindEnemy(_actionObj);

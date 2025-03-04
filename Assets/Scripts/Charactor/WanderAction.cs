@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class WanderAction : CharActionBase, ICharAction
+public class WanderAction : CharActionBase
 {
     bool isFowardGoal = false;
     Vector3 goal;
@@ -14,7 +14,7 @@ public class WanderAction : CharActionBase, ICharAction
         m_actionDelayTime = 1f;
     }
 
-    public void Update(CharactorObj _charObj)
+    public override void Update(CharactorObj _charObj)
     {
         if (isFowardGoal == false)
         {
