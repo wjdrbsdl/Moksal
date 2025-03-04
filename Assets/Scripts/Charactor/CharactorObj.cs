@@ -35,9 +35,9 @@ public class CharactorObj : MonoBehaviour
         if(curAction == null)
         {
             int randomAction = Random.Range(0, 2);
-            ShowDialog();
             curAction = m_charData.haveActions[randomAction];
             curAction.CalDeltaTime();
+            ShowDialog();
         }
         curAction.Update(this);
    
@@ -128,7 +128,8 @@ public class CharactorObj : MonoBehaviour
         if(dialog == null)
         dialog = CharDialogManager.Instance.GetDialogObj();
 
-        dialog.ShowDialog(this," 수행");
+        string name = curAction.GetType().Name;
+        dialog.ShowDialog(this, name + " 수행");
     }
 
     public void RestrictPos(ref Vector3 _goal)
